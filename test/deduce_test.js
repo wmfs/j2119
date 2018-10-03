@@ -4,7 +4,7 @@ const chai = require('chai')
 chai.use(require('dirty-chai'))
 const expect = chai.expect
 
-const j2119Deduce = require('../lib/j2119/deduce')
+const deduce = require('../lib/j2119/deduce')
 
 describe('J2119 Deduce', () => {
   const tests = [
@@ -18,7 +18,7 @@ describe('J2119 Deduce', () => {
 
   for (const [label, value, expected] of tests) {
     it(`deduce ${label}`, () => {
-      expect(j2119Deduce(value)).to.equal(expected)
+      expect(deduce(value)).to.equal(expected)
     })
   }
 })

@@ -4,7 +4,7 @@ const chai = require('chai')
 chai.use(require('dirty-chai'))
 const expect = chai.expect
 
-const j2119RoleNotPresentCondition = require('../lib/j2119/conditional')
+const roleNotPresentCondition = require('../lib/j2119/conditional')
 const constraint = require('../lib/j2119/constraints')
 
 describe('J2119 Constraint', () => {
@@ -14,7 +14,7 @@ describe('J2119 Constraint', () => {
       const json = { 'bar': 1 }
       expect(cut.applies(json, 'foo')).to.be.true()
 
-      const cond = j2119RoleNotPresentCondition(['foo', 'bar'])
+      const cond = roleNotPresentCondition(['foo', 'bar'])
       cut.addCondition(cond)
       expect(cut.applies(json, ['foo'])).to.be.false()
       expect(cut.applies(json, ['baz'])).to.be.true()
