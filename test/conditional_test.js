@@ -7,7 +7,6 @@ const expect = chai.expect
 const roleNotPresentCondition = require('../lib/j2119/conditional')
 
 describe('J2119 RoleNotPresent Condition', () => {
-
   it('should fail on an excluded role', () => {
     const cut = roleNotPresentCondition(['foo', 'bar'])
     const json = { 'bar': 1 }

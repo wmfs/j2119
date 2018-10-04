@@ -7,7 +7,6 @@ const expect = chai.expect
 const jsonPathChecker = require('../lib/j2119/json_path_checker')
 
 describe('jsonPathChecker', () => {
-
   describe('should do simple paths', () => {
     const paths = [
       '$.foo.bar',

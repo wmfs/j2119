@@ -137,7 +137,7 @@ describe('J2119 Constraint', () => {
 
     it('should detect a broken floor', () => {
       const cut = constraint.fieldValue('foo', { floor: 1 })
-      const json = { 'foo': 1  }
+      const json = { 'foo': 1 }
       const problems = []
       cut.check(json, 'a.b.c', problems)
       expect(problems.length).to.equal(1)
@@ -193,7 +193,7 @@ describe('J2119 Constraint', () => {
   describe('constraint.fieldType', () => {
     it('should be a silent no-op exit if the field isn\'t there', () => {
       const cut = constraint.fieldType('foo', 'integer', false, false)
-      const json = { 'bar': 1  }
+      const json = { 'bar': 1 }
       const problems = []
       cut.check(json, 'a.b.c', problems)
       expect(problems.length).to.equal(0)
@@ -225,7 +225,7 @@ describe('J2119 Constraint', () => {
 
     it('should successfully find incorrect types in an array field', () => {
       const cut = constraint.fieldType('a', 'integer', false, false)
-      const json = { 'a': [ 1, 2, "foo", 4 ] }
+      const json = { 'a': [ 1, 2, 'foo', 4 ] }
       const problems = []
       cut.check(json, 'a.b.c', problems)
       expect(problems.length).to.equal(1)
