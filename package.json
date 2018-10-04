@@ -18,7 +18,8 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "luxon": "^1.4.2"
+    "luxon": "1.4.2",
+    "xregexp": "4.2.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "3.0.0",
