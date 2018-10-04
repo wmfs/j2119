@@ -6,17 +6,18 @@ const expect = chai.expect
 
 const oxford = require('../lib/j2119/oxford')
 const matcher = require('../lib/j2119/matcher')
+const XRegExp = require('xregexp')
 
 describe('oxford', () => {
   describe('should show the underlying pattern working', () => {
-    const re = new RegExp('^' + oxford.BASIC + '$')
+    const re = new XRegExp('^' + oxford.BASIC + '$')
     const targets = [
       'X',
       'X or X',
       'X, X, or X',
       'X, X, X, or X'
     ]
-    for (const target in targets) {
+    for (const target of targets) {
       it(target, () => expect(re.test(target)).to.be.true())
     }
   })
@@ -28,8 +29,8 @@ describe('oxford', () => {
       'a, aa, or aaa',
       'a, aa, aaa, or aaaa'
     ]
-    const cut = new RegExp('^' + oxford.re('a+') + '$')
-    for (const target in targets) {
+    const cut = new XRegExp('^' + oxford.re('a+') + '$')
+    for (const target of targets) {
       it(target, () => expect(cut.test(target)).to.be.true())
     }
   })
@@ -47,8 +48,8 @@ describe('oxford', () => {
         use_article: true,
         capture_name: 'capture_me'
       })
-    const cut = new RegExp('^' + re + '$')
-    for (const target in targets) {
+    const cut = new XRegExp('^' + re + '$')
+    for (const target of targets) {
       it(target, () => expect(cut.test(target)).to.be.true())
     }
   })
