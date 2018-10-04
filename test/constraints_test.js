@@ -91,9 +91,9 @@ describe('J2119 Constraint', () => {
     })
   })
 
-  describe('constraint.fieldValueConstraint', () => {
+  describe('constraint.fieldValue', () => {
     it('should be a silent no-op exit if the field isn\'t there', () => {
-      const cut = constraint.fieldValueConstraint('foo', {})
+      const cut = constraint.fieldValue('foo', {})
       const json = { 'foo': 1 }
       const problems = []
       cut.check(json, 'a.b.c', problems)
@@ -101,7 +101,7 @@ describe('J2119 Constraint', () => {
     })
 
     it('should detect a violation of enum policy', () => {
-      const cut = constraint.fieldValueConstraint('foo', { enum: [ 1, 2, 3 ] })
+      const cut = constraint.fieldValue('foo', { enum: [ 1, 2, 3 ] })
       let json = { 'foo': 3 }
       const problems = []
       cut.check(json, 'a.b.c', problems)
@@ -113,7 +113,7 @@ describe('J2119 Constraint', () => {
     })
 
     it('should detect a broken equals', () => {
-      const cut = constraint.fieldValueConstraint('foo', { equal: 12 })
+      const cut = constraint.fieldValue('foo', { equal: 12 })
       let json = { 'foo': 12 }
       const problems = []
       cut.check(json, 'a.b.c', problems)
@@ -124,7 +124,7 @@ describe('J2119 Constraint', () => {
     })
 
     it('should do min right', () => {
-      const cut = constraint.fieldValueConstraint('foo', { min: 1 })
+      const cut = constraint.fieldValue('foo', { min: 1 })
       const problems = []
       let json = { 'foo': 1 }
       cut.check(json, 'a.b.c', problems)
@@ -136,7 +136,7 @@ describe('J2119 Constraint', () => {
     })
 
     it('should detect a broken floor', () => {
-      const cut = constraint.fieldValueConstraint('foo', { floor: 1 })
+      const cut = constraint.fieldValue('foo', { floor: 1 })
       const json = { 'foo': 1  }
       const problems = []
       cut.check(json, 'a.b.c', problems)
@@ -144,7 +144,7 @@ describe('J2119 Constraint', () => {
     })
 
     it('should detect a broken ceiling', () => {
-      const cut = constraint.fieldValueConstraint('foo', { ceiling: 3 })
+      const cut = constraint.fieldValue('foo', { ceiling: 3 })
       const problems = []
       let json = { 'foo': 2 }
       cut.check(json, 'a.b.c', problems)
@@ -156,7 +156,7 @@ describe('J2119 Constraint', () => {
     })
 
     it('should do max right', () => {
-      const cut = constraint.fieldValueConstraint('foo', { max: 3 })
+      const cut = constraint.fieldValue('foo', { max: 3 })
       let json = { 'foo': 3 }
       const problems = []
       cut.check(json, 'a.b.c', problems)
@@ -168,7 +168,7 @@ describe('J2119 Constraint', () => {
     })
 
     it('should accept something within min/max range', () => {
-      const cut = constraint.fieldValueConstraint('foo', { min: 0, max: 3 })
+      const cut = constraint.fieldValue('foo', { min: 0, max: 3 })
       const json = { 'foo': 1 }
       const problems = []
       cut.check(json, 'a.b.c', problems)
@@ -176,17 +176,21 @@ describe('J2119 Constraint', () => {
     })
   })
 
-  /*
-   describe('J2119::OnlyOneOfConstraint', () => {
-     it('Should detect more than one errors', () => {
-       const cut = J2119::OnlyOneOfConstraint(['foo', 'bar', 'baz'])
-       const json = { 'foo': 1, "bar': 2 }'
-       const problems = []
-       cut.check(json, 'a.b.c', problems)
-       expect(problems.length).to.equal(1)
-     })
-   })
+  describe('constraint.onlyOneOf', () => {
+    it('Should detect more than one errors', () => {
+      const cut = constraint.onlyOneOf(['foo', 'bar', 'baz'])
+      const problems = []
+      let json = { 'foo': 1 }
+      cut.check(json, 'a.b.c', problems)
+      expect(problems.length).to.equal(0)
 
+      json = { 'foo': 1, 'bar': 2 }
+      cut.check(json, 'a.b.c', problems)
+      expect(problems.length).to.equal(1)
+    })
+  })
+
+/*
    describe('J2119::FieldTypeConstraint', () => {
      it('should be a silent no-op exit if the field isn\'t there', () => {
        const cut = J2119::FieldTypeConstraint('foo', :integer, false, false)
