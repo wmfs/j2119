@@ -190,88 +190,106 @@ describe('J2119 Constraint', () => {
     })
   })
 
-/*
-   describe('J2119::FieldTypeConstraint', () => {
-     it('should be a silent no-op exit if the field isn\'t there', () => {
-       const cut = J2119::FieldTypeConstraint('foo', :integer, false, false)
-       const json = { 'bar': 1  }
-       const problems = []
-       cut.check(json, 'a.b.c', problems)
-       expect(problems.length).to.equal(0)
-     })
+  describe('constraint.fieldType', () => {
+    it('should be a silent no-op exit if the field isn\'t there', () => {
+      const cut = constraint.fieldType('foo', 'integer', false, false)
+      const json = { 'bar': 1  }
+      const problems = []
+      cut.check(json, 'a.b.c', problems)
+      expect(problems.length).to.equal(0)
+    })
 
-     it('should successfully approve correct types', () => {
-       tdata = { :string => '"foo', :integer => 3, :float => 0.33,
-     :boolean => false, :timestamp => '"2016-03-14T01:59:00Z',
-     :object => { 'a': 1 }', :array => '[ 3, 4 ]',
-     :json_path => "\"$.a.c[2,3]\"", :reference_path => "\"$.a['b'].d[3]\""
-     }
-       tdata.each () => { |type, value|
-       const cut = J2119::FieldTypeConstraint('foo', type, false, false)
-         j = "{\"foo\': #{value}}"
-         const json = JSON.parse(j)
-         const problems = []
-         cut.check(json, 'a.b.c', problems)
-         expect(problems.length).to.equal(0)
-       })
+    describe('should successfully approve correct types', () => {
+      const tdata = {
+        string: 'foo',
+        integer: 3,
+        float: 0.33,
+        boolean: false,
+        timestamp: '2016-03-14T01:59:00Z',
+        object: { a: 1 },
+        array: [ 3, 4 ],
+        json_path: '$.a.c[2,3]',
+        reference_path: '$.a[\'b\'].d[3]',
+        URI: 'http://www.wmfs.net/'
+      }
+      for (const [type, value] of Object.entries(tdata)) {
+        it(type, () => {
+          const cut = constraint.fieldType('foo', type, false, false)
+          const json = { foo: value }
+          const problems = []
+          cut.check(json, 'a.b.c', problems)
+          expect(problems.length).to.equal(0)
+        })
+      }
+    })
 
+    it('should successfully find incorrect types in an array field', () => {
+      const cut = constraint.fieldType('a', 'integer', false, false)
+      const json = { 'a': [ 1, 2, "foo", 4 ] }
+      const problems = []
+      cut.check(json, 'a.b.c', problems)
+      expect(problems.length).to.equal(1)
+    })
 
-     it('should successfully find incorrect types in an array field', () => {
-       const cut = J2119::FieldTypeConstraint('a', :integer, false, false)
-       j = { 'a': [ 1, 2, "foo", 4 ] }'
-       const json = JSON.parse(j)
-       const problems = []
-       cut.check(json, 'a.b.c', problems)
-       expect(problems.length).to.equal(1)
-     })
+    describe('should successfully flag incorrect types', () => {
+      const tdata = {
+        string: 33,
+        integer: 'foo',
+        float: 17,
+        boolean: 'null',
+        timestamp: '2x16-03-14T015900Z',
+        json_path: 'blibble',
+        reference_path: '$.a.*',
+        URI: 'trousers'
+      }
+      for (const [type, value] of Object.entries(tdata)) {
+        it(type, () => {
+          const cut = constraint.fieldType('foo', type, false, false)
+          const json = { foo: value }
+          const problems = []
+          cut.check(json, 'a.b.c', problems)
+          expect(problems.length).to.equal(1)
+        })
+      }
+    })
 
-     it('should successfully flag incorrect types', () => {
-       tdata = { :string => 33, :integer => '"foo', :float => 17,
-     :boolean => 'null', :timestamp => '"2x16-03-14T01:59:00Z',
-     :json_path => '"blibble', :reference_path => '"$.a.*' }
-       tdata.each', () => { |type, value|
-       const cut = J2119::FieldTypeConstraint('foo', type, false, false)
-       j = "{\"foo\': #{value}}"
-       const json = JSON.parse(j)
-       const problems = []
-       cut.check(json, 'a.b.c', problems)
-       expect(problems.length).to.equal(1)
-     })
-   })
+    it('should handle nullable correctly', () => {
+      const json = { 'a': null }
+      let cut = constraint.fieldType('a', 'string', false, false)
+      let problems = []
+      cut.check(json, 'a.b.c', problems)
+      expect(problems.length).to.equal(1)
 
-   it('should handle nullable correctly', () => {
-     tdata = { :a => nil }
-     j = { 'a': null }'
-     const json = j
-     const cut = J2119::FieldTypeConstraint('a', :string, false, false)
-     const problems = []
-     cut.check(json, 'a.b.c', problems)
-     expect(problems.length).to.equal(1)
-     const cut = J2119::FieldTypeConstraint('a', :string, false, true)
-     const problems = []
-     cut.check(json, 'a.b.c', problems)
-     expect(problems.length).to.equal(0)
-   })
+      cut = constraint.fieldType('a', 'string', false, true)
+      problems = []
+      cut.check(json, 'a.b.c', problems)
+      expect(problems.length).to.equal(0)
+    })
 
-   it('should handle array nesting constraints', () => {
-     const cut = J2119::FieldTypeConstraint('foo', :array, false, false)
-     const json = '{"foo': 1 }'
-     const problems = []
-     cut.check(json, 'a.b.c', problems)
-     expect(problems.length).to.equal(1)
+    describe('should handle array nesting constraints', () => {
+      it('field value is not an array', () => {
+        const cut = constraint.fieldType('foo', 'array', false, false)
+        const json = { foo: 1 }
+        const problems = []
+        cut.check(json, 'a.b.c', problems)
+        expect(problems.length).to.equal(1)
+      })
 
-     const cut = J2119::FieldTypeConstraint('foo', :integer, true, false)
-     const json = '{"foo': [ "bar" ] }'
-     const problems = []
-     cut.check(json, 'a.b.c', problems)
-     expect(problems.length).to.equal(1)
-     const json = '{"foo': [ 1 ] }'
-     const problems = []
-     cut.check(json, 'a.b.c', problems)
-     expect(problems.length).to.equal(0)
-   })
+      it('field value is array, but types are wrong', () => {
+        const cut = constraint.fieldType('foo', 'integer', true, false)
+        const json = { foo: [ 'bar' ] }
+        const problems = []
+        cut.check(json, 'a.b.c', problems)
+        expect(problems.length).to.equal(1)
+      })
 
-   })
-   */
-
+      it('field value is array and type is correct', () => {
+        const cut = constraint.fieldType('foo', 'integer', true, false)
+        const json = { foo: [ 1 ] }
+        const problems = []
+        cut.check(json, 'a.b.c', problems)
+        expect(problems.length).to.equal(0)
+      })
+    })
+  })
 })

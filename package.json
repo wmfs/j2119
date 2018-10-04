@@ -17,7 +17,9 @@
     "url": "https://github.com/wmfs/j2119/issues"
   },
   "main": "lib/index.js",
-  "dependencies": {},
+  "dependencies": {
+    "luxon": "^1.4.2"
+  },
   "devDependencies": {
     "@semantic-release/changelog": "3.0.0",
     "@semantic-release/git": "7.0.4",
