@@ -5,7 +5,7 @@ chai.use(require('dirty-chai'))
 const expect = chai.expect
 
 const oxford = require('../lib/j2119/oxford')
-const matcher = require('../lib/j2119/matcher')
+const lineMatcher = require('../lib/j2119/line_matcher')
 const XRegExp = require('xregexp')
 
 describe('oxford', () => {
@@ -61,11 +61,11 @@ describe('oxford', () => {
   ]
   const roles = [ 'R2', 'R3', 'R4' ]
   describe('should properly break up a role list', () => {
-    const match = matcher('R1')
-    roles.forEach(role => match.addRole(role))
+    const matcher = lineMatcher('R1')
+    roles.forEach(role => matcher.addRole(role))
     OXFORD_LISTS.forEach(([list, expected]) => {
       it(list, () => {
-        expect(oxford.breakRoleList(match, list)).to.eql(expected)
+        expect(oxford.breakRoleList(matcher, list)).to.eql(expected)
       })
     })
   })

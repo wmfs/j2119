@@ -5,10 +5,10 @@ chai.use(require('dirty-chai'))
 const expect = chai.expect
 
 const oxford = require('../lib/j2119/oxford')
-const matcher = require('../lib/j2119/matcher')
+const lineMatcher = require('../lib/j2119/line_matcher')
 const XRegExp = require('xregexp')
 
-describe('matcher', () => {
+describe('lineMatcher', () => {
   const EACHOF_LINES = [
     'Each of a Pass State, a Task State, a Choice State, and a Parallel State MAY have a boolean field named "End".',
     'Each of a Succeed State and a Fail State is a "Terminal State".',
@@ -18,7 +18,7 @@ describe('matcher', () => {
     'Succeed State', 'Fail State', 'Task Tate']
 
   describe('should spot Each-of lines', () => {
-    const cut = matcher('message')
+    const cut = lineMatcher('message')
     ROLES.forEach(role => cut.addRole(role))
     EACHOF_LINES.forEach(line =>
       it(line, () => {
@@ -29,7 +29,7 @@ describe('matcher', () => {
 
   it('should handle only-one-of lines', () => {
     const line = 'A x MUST have only one of "Seconds", "SecondsPath", "Timestamp", and "TimestampPath".'
-    const cut = matcher('x')
+    const cut = lineMatcher('x')
     expect(cut.isOnlyOneMatchLine(line)).to.be.ok()
 
     const m = XRegExp.exec(line, cut.onlyOneMatch)
@@ -59,7 +59,7 @@ describe('matcher', () => {
   ]
   // each-of handling isn't complete
   xdescribe('should properly disassemble each-of lines', () => {
-    const cut = matcher('message')
+    const cut = lineMatcher('message')
     ROLES.forEach(role => cut.addRole(role))
     EACHOF_LINES.forEach(line => {
       const wanted = SPLIT_EACHOF_LINES.shift()
@@ -77,7 +77,7 @@ describe('matcher', () => {
     'A Choice Rule with a "Variable" field is a "Comparison".'
   ]
   describe('should spot role-def lines', () => {
-    const cut = matcher('message')
+    const cut = lineMatcher('message')
     RDLINES.forEach(line =>
       it(line, () => {
         expect(cut.isRoleDefLine(line)).to.be.ok()
@@ -91,7 +91,7 @@ describe('matcher', () => {
     'A State with a "Foo" field is a "Bar".'
   ]
   describe('should match value-based role defs', () => {
-    const cut = matcher('State')
+    const cut = lineMatcher('State')
 
     VALUE_BASED_ROLE_DEFS.forEach(line => {
       it(line, () =>
@@ -126,19 +126,19 @@ describe('matcher', () => {
   })
 
   it('should match is_a role defs', () => {
-    const cut = matcher('Foo')
+    const cut = lineMatcher('Foo')
     expect(cut.roledefMatch.test('A Foo is a "Bar".')).to.be.true()
   })
 
   it('should properly parse is_a role defs', () => {
-    const cut = matcher('Foo')
+    const cut = lineMatcher('Foo')
     cut.addRole('Bar')
     const c = cut.buildRoleDef('A Foo is a "Bar".')
     expect(c['val_match_present']).to.be.null()
   })
 
   describe('should properly parse value-based role defs', () => {
-    const cut = matcher('State')
+    const cut = lineMatcher('State')
     it(VALUE_BASED_ROLE_DEFS[0], () => {
       const c = cut.buildRoleDef(VALUE_BASED_ROLE_DEFS[0])
       expect(c['role']).to.eql('State')
@@ -164,7 +164,7 @@ describe('matcher', () => {
     'A message MUST have a field named one of "StringEquals", "StringLessThan", "StringGreaterThan", "StringLessThanEquals", "StringGreaterThanEquals", "NumericEquals", "NumericLessThan", "NumericGreaterThan", "NumericLessThanEquals", "NumericGreaterThanEquals", "BooleanEquals", "TimestampEquals", "TimestampLessThan", "TimestampGreaterThan", "TimestampLessThanEquals", or "TimestampGreaterThanEquals".'
   ]
   describe('should spot a simple constraint line', () => {
-    const cut = matcher('message')
+    const cut = lineMatcher('message')
     LINES.forEach(line =>
       it(line, () => {
         expect(cut.isConstraintLine(line)).to.be.ok()
@@ -173,7 +173,7 @@ describe('matcher', () => {
   })
 
   describe('should spot a simple constraint line with new roles', () => {
-    const cut = matcher('message')
+    const cut = lineMatcher('message')
     cut.addRole('avatar')
     const lines2 = LINES.map(line => line.replace('message', 'avatar'))
     lines2.forEach(line =>
@@ -196,7 +196,7 @@ describe('matcher', () => {
       'an R2 or an R3',
       'an R2, an R3, or an R4'
     ]
-    const cut = matcher('R1')
+    const cut = lineMatcher('R1')
     cut.addRole('R2')
     cut.addRole('R3')
     cut.addRole('R4')
@@ -212,20 +212,20 @@ describe('matcher', () => {
   describe('should match a reasonably complex constraint', () => {
     const s = 'A State MUST have a string field named "Type" whose value MUST be one of "Pass", "Succeed", "Fail", "Task", "Choice", "Wait", or "Parallel".'
     it(s, () => {
-      const cut = matcher('State')
+      const cut = lineMatcher('State')
       expect(cut.constraintMatch.test(s)).to.be.true()
     })
 
     const r = 'A Retrier MAY have a nonnegative-integer field named "MaxAttempts" whose value MUST be less than 99999999.'
     it(r, () => {
-      const cut = matcher('State')
+      const cut = lineMatcher('State')
       cut.addRole('Retrier')
       expect(cut.constraintMatch.test(r)).to.be.true()
     })
   })
 
   it('should build an enum constraint object', () => {
-    const cut = matcher('State')
+    const cut = lineMatcher('State')
     const s = 'A State MUST have a string field named "Type" whose value MUST be one of "Pass", "Succeed", "Fail", "Task", "Choice", "Wait", or "Parallel".'
     const c = cut.buildConstraint(s)
     expect(c['role']).to.eql('State')
@@ -238,7 +238,7 @@ describe('matcher', () => {
   })
 
   it('should build a relational constraint object', () => {
-    const cut = matcher('Retrier')
+    const cut = lineMatcher('Retrier')
     const s = 'A Retrier MAY have a nonnegative-integer field named "MaxAttempts" whose value MUST be less than 99999999.'
     const c = cut.buildConstraint(s)
     expect(c['role']).to.eql('Retrier')
@@ -254,7 +254,7 @@ describe('matcher', () => {
   describe('should build a constraint object with child type', () => {
     const s = 'A State Machine MUST have an object field named "States"; each field is a "State".'
     it(s, () => {
-      const cut = matcher('State Machine')
+      const cut = lineMatcher('State Machine')
       expect(cut.constraintMatch.test(s)).to.be.true()
       const c = cut.buildConstraint(s)
       expect(c['role']).to.eql('State Machine')
@@ -267,7 +267,7 @@ describe('matcher', () => {
 
     const line = 'A State Machine MAY have an object field named "Not"; its value is a "FOO".'
     it(line, () => {
-      const cut = matcher('State Machine')
+      const cut = lineMatcher('State Machine')
       expect(cut.constraintMatch.test(line)).to.be.true()
       const c = cut.buildConstraint(line)
       expect(c['role']).to.eql('State Machine')
