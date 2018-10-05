@@ -208,8 +208,8 @@ describe('J2119 Constraint', () => {
         timestamp: '2016-03-14T01:59:00Z',
         object: { a: 1 },
         array: [ 3, 4 ],
-        json_path: '$.a.c[2,3]',
-        reference_path: '$.a[\'b\'].d[3]',
+        JSONPath: '$.a.c[2,3]',
+        referencePath: '$.a[\'b\'].d[3]',
         URI: 'http://www.wmfs.net/'
       }
       for (const [type, value] of Object.entries(tdata)) {
@@ -238,8 +238,8 @@ describe('J2119 Constraint', () => {
         float: 17,
         boolean: 'null',
         timestamp: '2x16-03-14T015900Z',
-        json_path: 'blibble',
-        reference_path: '$.a.*',
+        JSONPath: 'blibble',
+        referencePath: '$.a.*',
         URI: 'trousers'
       }
       for (const [type, value] of Object.entries(tdata)) {
