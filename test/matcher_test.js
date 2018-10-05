@@ -22,7 +22,7 @@ describe('lineMatcher', () => {
     ROLES.forEach(role => cut.addRole(role))
     EACHOF_LINES.forEach(line =>
       it(line, () => {
-        expect(cut.eachofMatch.test(line)).to.be.true()
+        expect(cut.eachOfMatch.test(line)).to.be.true()
       })
     )
   })
