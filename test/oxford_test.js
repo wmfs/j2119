@@ -55,25 +55,25 @@ describe('oxford', () => {
   })
 
   const OXFORD_LISTS = [
-    ['an R2', [ 'R2' ] ],
-    ['an R2 or an R3', [ 'R2', 'R3' ] ],
-    ['an R2, an R3, or an R4', [ 'R2', 'R3', 'R4' ] ]
+    [ 'an R2', [ 'R2' ] ],
+    [ 'an R2 or an R3', [ 'R2', 'R3' ] ],
+    [ 'an R2, an R3, or an R4', [ 'R2', 'R3', 'R4' ] ]
   ]
   const roles = [ 'R2', 'R3', 'R4' ]
-  xdescribe('should properly break up a role list', () => {
+  describe('should properly break up a role list', () => {
     const match = matcher('R1')
     roles.forEach(role => match.addRole(role))
     OXFORD_LISTS.forEach(([list, expected]) => {
-      xit(list, () => {
-        expect(oxford.breakRoleList(match, list)).to.equal(expected)
+      it(list, () => {
+        expect(oxford.breakRoleList(match, list)).to.eql(expected)
       })
     })
   })
 
   const STRING_LISTS = [
-    ['"R2"', [ 'R2' ] ],
-    ['"R2" or "R3"', [ 'R2', 'R3' ] ],
-    ['"R2", "R3", or "R4"', [ 'R2', 'R3', 'R4' ] ]
+    [ '"R2"', [ 'R2' ] ],
+    [ '"R2" or "R3"', [ 'R2', 'R3' ] ],
+    [ '"R2", "R3", or "R4"', [ 'R2', 'R3', 'R4' ] ]
   ]
   describe('should properly break up a string list', () => {
     STRING_LISTS.forEach(([list, expected]) => {

@@ -8,13 +8,11 @@ const oxford = require('../lib/j2119/oxford')
 const matcher = require('../lib/j2119/matcher')
 const XRegExp = require('xregexp')
 
-
 describe('matcher', () => {
-
   const EACHOF_LINES = [
-    "Each of a Pass State, a Task State, a Choice State, and a Parallel State MAY have a boolean field named \"End\".",
-    "Each of a Succeed State and a Fail State is a \"Terminal State\".",
-    "Each of a Task State and a Parallel State MAY have an object-array field named \"Catch\"; each member is a \"Catcher\"."
+    'Each of a Pass State, a Task State, a Choice State, and a Parallel State MAY have a boolean field named "End".',
+    'Each of a Succeed State and a Fail State is a "Terminal State".',
+    'Each of a Task State and a Parallel State MAY have an object-array field named "Catch"; each member is a "Catcher".'
   ]
   const ROLES = ['Pass State', 'Task State', 'Choice State', 'Parallel State',
     'Succeed State', 'Fail State', 'Task Tate']
@@ -32,97 +30,98 @@ describe('matcher', () => {
   it('should handle only-one-of lines', () => {
     const line = 'A x MUST have only one of "Seconds", "SecondsPath", "Timestamp", and "TimestampPath".'
     const cut = matcher('x')
-    expect(cut.isOnlyOneMatchLine(line)).to.be.true()
+    expect(cut.isOnlyOneMatchLine(line)).to.be.ok()
 
-    const m = cut.onlyOneMatch.test(line)
-    expect(m).to.be.true()
+    const m = XRegExp.exec(line, cut.onlyOneMatch)
+    expect(m).to.be.ok()
     expect(m['role']).to.eql('x')
     const s = m['field_list']
     const l = oxford.breakStringList(s)
-    expect(l).to.contain(['Seconds', 'SecondsPath', 'Timestamp', 'TimestampPath'])
+    expect(l).to.contain('Seconds', 'SecondsPath', 'Timestamp', 'TimestampPath')
     expect(l.length).to.eql(4)
   })
 
   const SPLIT_EACHOF_LINES = [
     [
-      "A Pass State MAY have a boolean field named \"End\".",
-      "A Task State MAY have a boolean field named \"End\".",
-      "A Choice State MAY have a boolean field named \"End\".",
-      "A Parallel State MAY have a boolean field named \"End\"."
+      'A Pass State MAY have a boolean field named "End".',
+      'A Task State MAY have a boolean field named "End".',
+      'A Choice State MAY have a boolean field named "End".',
+      'A Parallel State MAY have a boolean field named "End".'
     ],
     [
-      "A Succeed State is a \"Terminal State\".",
-      "A Fail State is a \"Terminal State\"."
+      'A Succeed State is a "Terminal State".',
+      'A Fail State is a "Terminal State".'
     ],
     [
-      "A Task State MAY have an object-array field named \"Catch\"; each member is a \"Catcher\".",
-      "A Parallel State MAY have an object-array field named \"Catch\"; each member is a \"Catcher\"."
+      'A Task State MAY have an object-array field named "Catch"; each member is a "Catcher".',
+      'A Parallel State MAY have an object-array field named "Catch"; each member is a "Catcher".'
     ]
   ]
-  xit('should properly disassemble each-of lines', () => {
+  // each-of handling isn't complete
+  xdescribe('should properly disassemble each-of lines', () => {
     const cut = matcher('message')
     ROLES.forEach(role => cut.addRole(role))
     EACHOF_LINES.forEach(line => {
-      wanted = SPLIT_EACHOF_LINES.shift()
+      const wanted = SPLIT_EACHOF_LINES.shift()
       oxford.breakRoleList(cut, line).forEach(oneLine => {
         it(oneLine, () => {
-          expect(wanted.includes(one_line)).to.be.true()
+          expect(wanted.includes(oneLine)).to.be.ok()
         })
       })
     })
   })
 
   const RDLINES = [
-    "A State whose \"End\" field's value is true is a \"Terminal State\".",
-    "Each of a Succeed State and a Fail state is a \"Terminal State\".",
-    "A Choice Rule with a \"Variable\" field is a \"Comparison\"."
+    'A State whose "End" field\'s value is true is a "Terminal State".',
+    'Each of a Succeed State and a Fail state is a "Terminal State".',
+    'A Choice Rule with a "Variable" field is a "Comparison".'
   ]
   describe('should spot role-def lines', () => {
     const cut = matcher('message')
     RDLINES.forEach(line =>
       it(line, () => {
-        expect(cut.isRoleDefLine(line)).to.be.true()
+        expect(cut.isRoleDefLine(line)).to.be.ok()
       })
     )
   })
 
   const VALUE_BASED_ROLE_DEFS = [
-    "A State whose \"End\" field's value is true is a \"Terminal State\".",
-    "A State whose \"Comment\" field's value is \"Hi\" is a \"Frobble\".",
-    "A State with a \"Foo\" field is a \"Bar\"."
+    'A State whose "End" field\'s value is true is a "Terminal State".',
+    'A State whose "Comment" field\'s value is "Hi" is a "Frobble".',
+    'A State with a "Foo" field is a "Bar".'
   ]
   describe('should match value-based role defs', () => {
     const cut = matcher('State')
 
     VALUE_BASED_ROLE_DEFS.forEach(line => {
       it(line, () =>
-        expect(cut.roledefMatch.test(line)).to.be.true()
+        expect(cut.roledefMatch.test(line)).to.be.ok()
       )
     })
 
     it(VALUE_BASED_ROLE_DEFS[0], () => {
-      const m = cut.roledefMatch.test(VALUE_BASED_ROLE_DEFS[0])
+      const m = XRegExp.exec(VALUE_BASED_ROLE_DEFS[0], cut.roledefMatch)
       expect(m['role']).to.eql('State')
       expect(m['fieldtomatch']).to.eql('End')
       expect(m['valtomatch']).to.eql('true')
       expect(m['newrole']).to.eql('Terminal State')
-      expect(m['val_match_present']).to.be.true()
+      expect(m['val_match_present']).to.be.ok()
     })
 
     it(VALUE_BASED_ROLE_DEFS[1], () => {
-      const m = cut.roledefMatch.test(VALUE_BASED_ROLE_DEFS[1])
+      const m = XRegExp.exec(VALUE_BASED_ROLE_DEFS[1], cut.roledefMatch)
       expect(m['role']).to.eql('State')
       expect(m['fieldtomatch']).to.eql('Comment')
       expect(m['valtomatch']).to.eql('"Hi"')
       expect(m['newrole']).to.eql('Frobble')
-      expect(m['val_match_present']).to.be.true()
+      expect(m['val_match_present']).to.be.ok()
     })
 
     it(VALUE_BASED_ROLE_DEFS[2], () => {
-      const m = cut.roledefMatch.test(VALUE_BASED_ROLE_DEFS[2])
+      const m = XRegExp.exec(VALUE_BASED_ROLE_DEFS[2], cut.roledefMatch)
       expect(m['role']).to.eql('State')
       expect(m['newrole']).to.eql('Bar')
-      expect(m['with_a_field']).to.be.true()
+      expect(m['with_a_field']).to.be.ok()
     })
   })
 
@@ -135,7 +134,7 @@ describe('matcher', () => {
     const cut = matcher('Foo')
     cut.addRole('Bar')
     const c = cut.buildRoleDef('A Foo is a "Bar".')
-    expect(c['val_match_present']).to.eql(null)
+    expect(c['val_match_present']).to.be.null()
   })
 
   describe('should properly parse value-based role defs', () => {
@@ -168,7 +167,7 @@ describe('matcher', () => {
     const cut = matcher('message')
     LINES.forEach(line =>
       it(line, () => {
-        expect(cut.isConstraintLine(line)).to.be.true()
+        expect(cut.isConstraintLine(line)).to.be.ok()
       })
     )
   })
@@ -179,7 +178,7 @@ describe('matcher', () => {
     const lines2 = LINES.map(line => line.replace('message', 'avatar'))
     lines2.forEach(line =>
       it(line, () =>
-        expect(cut.isConstraintLine(line)).to.be.true()
+        expect(cut.isConstraintLine(line)).to.be.ok()
       )
     )
   })
@@ -192,7 +191,7 @@ describe('matcher', () => {
   ]
   describe('should catch a conditional on a constraint', () => {
     const excludes = [
-      null,
+      undefined,
       'an R2',
       'an R2 or an R3',
       'an R2, an R3, or an R4'
@@ -203,9 +202,9 @@ describe('matcher', () => {
     cut.addRole('R4')
     COND_LINES.forEach(line =>
       it(line, () => {
-        expect(cut.constraintMatch.test(line)).to.be.true()
-        const m = cut.constraintMatch.test(line)
-        expect(m['excluded']).to.eql(excludes.shift)
+        expect(cut.constraintMatch.test(line)).to.be.ok()
+        const m = XRegExp.exec(line, cut.constraintMatch)
+        expect(m['excluded']).to.eql(excludes.shift())
       })
     )
   })
@@ -236,12 +235,6 @@ describe('matcher', () => {
     expect(c['relation']).to.be.null()
     expect(c['strings']).to.eql('"Pass", "Succeed", "Fail", "Task", "Choice", "Wait", or "Parallel"')
     expect(c['child_type']).to.be.null()
-  })
-
-  it('should tokenize string lists properly', () => {
-    expect(matcher.tokenize_strings('"a"')).to.eql(['a'])
-    expect(matcher.tokenize_strings('"a" or "b"')).to.eql(['a', 'b'])
-    expect(matcher.tokenize_strings('"a", "b", or "c"')).to.eql(['a', 'b', 'c'])
   })
 
   it('should build a relational constraint object', () => {
