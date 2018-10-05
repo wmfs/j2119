@@ -45,7 +45,7 @@ describe('J2119 Assigner', () => {
       'type': 'nonnegative-integer',
       'field_name': 'MaxAttempts',
       'relation': 'less than',
-      'target': 99999999
+      'target': '99999999'
     }
     const constraints = roleConstraints()
     const rf = roleFinder()
@@ -53,8 +53,12 @@ describe('J2119 Assigner', () => {
     const permittedFields = allowedFields()
     const cut = assigner(constraints, rf, matcher, permittedFields)
     cut.assignConstraints(assertion)
-    const retrieved = constraints.getConstraints('R')
-    expect(retrieved[0].toString()).to.eql('trousers')
+
+    const retrieved = constraints.getConstraints('R').map(r => r.toString())
+    expect(retrieved.length).to.eql(3)
+    expect(retrieved).to.include('<Field MaxAttempts should be of type integer>')
+    expect(retrieved).to.include('<Field MaxAttempts has constraints {"min":0}>')
+    expect(retrieved).to.include('<Field MaxAttempts has constraints {"ceiling":99999999}>')
   })
 
   it('should assign an only_one_of constraint properly', () => {
@@ -68,8 +72,10 @@ describe('J2119 Assigner', () => {
     const permittedFields = allowedFields()
     const cut = assigner(constraints, rf, matcher, permittedFields)
     cut.assignOnlyOneOf(assertion)
-    const retrieved = constraints.getConstraints('R')
-    expect(retrieved[0].toString()).to.eql('trousers')
+
+    const retrieved = constraints.getConstraints('R').map(r => r.toString())
+    expect(retrieved.length).to.eql(1)
+    expect(retrieved[0]).to.eql('<Node can have one of ["foo","bar","baz"] fields>')
   })
 
   it('should add a HasFieldConstraint if there\'s a MUST', () => {
@@ -84,63 +90,73 @@ describe('J2119 Assigner', () => {
     const permittedFields = allowedFields()
     const cut = assigner(constraints, rf, matcher, permittedFields)
     cut.assignConstraints(assertion)
-    const retrieved = constraints.getConstraints('R')
-    expect(retrieved[0].toString()).to.eql('trousers')
+
+    const retrieved = constraints.getConstraints('R').map(r => r.toString())
+    expect(retrieved.length).to.eql(1)
+    expect(retrieved[0]).to.eql('<Field foo should be present>')
   })
 
   it('should add a DoesNotHaveFieldConstraint if there\'s a MUST NOT', () => {
-    const assertion = { 'role': 'R', 'modal': 'MUST NOT', 'field_name': 'foo' }
+    const assertion = {
+      'role': 'R',
+      'modal': 'MUST NOT',
+      'field_name': 'foo'
+    }
     const constraints = roleConstraints()
     const rf = roleFinder()
     const matcher = lineMatcher('x')
     const permittedFields = allowedFields()
     const cut = assigner(constraints, rf, matcher, permittedFields)
     cut.assignConstraints(assertion)
-    const retrieved = constraints.getConstraints('R')
-    expect(retrieved[0].toString()).to.eql('trousers')
+
+    const retrieved = constraints.getConstraints('R').map(r => r.toString())
+    expect(retrieved.length).to.eql(1)
+    expect(retrieved[0]).to.eql('<Field foo should be absent>')
   })
 
-  xit('should manage a complex type constraint ', () => {
-    const assertion = { 'role': 'R',
-                  'modal': 'MUST',
-                  'field_name': 'foo',
-                  'type': 'nonnegative-float'
-                }
+  it('should manage a complex type constraint ', () => {
+    const assertion = {
+      'role': 'R',
+      'modal': 'MUST',
+      'field_name': 'foo',
+      'type': 'nonnegative-float'
+    }
     const constraints = roleConstraints()
     const rf = roleFinder()
     const matcher = lineMatcher('x')
     const permittedFields = allowedFields()
     const cut = assigner(constraints, rf, matcher, permittedFields)
     cut.assignConstraints(assertion)
-    const retrieved = constraints.getConstraints('R')
-    // c = retrieved.select {|x| x.is_a?(J2119::HasFieldConstraint)}
-    expect(c.length).to.eql(1)
-    // c = retrieved.select {|x| x.is_a?(J2119::FieldTypeConstraint)}
-    expect(c.length).to.eql(1)
-    // c = retrieved.select {|x| x.is_a?(J2119::FieldValueConstraint)}
-    expect(c.length).to.eql(1)
+
+    const retrieved = constraints.getConstraints('R').map(r => r.toString())
+    expect(retrieved.length).to.eql(3)
+    expect(retrieved).to.include('<Field foo should be of type float>')
+    expect(retrieved).to.include('<Field foo has constraints {"min":0}>')
+    expect(retrieved).to.include('<Field foo should be present>')
   })
 
-  xit('should record a relational constraint ', () => {
-    const assertion = { 'role': 'R',
-                  'modal': 'MUST',
-                  'field_name': 'foo',
-                  'type': 'nonnegative-float',
-                  'relation': 'less than'
-                }
+  it('should record a relational constraint ', () => {
+    const assertion = {
+      'role': 'R',
+      'modal': 'MUST',
+      'field_name': 'foo',
+      'type': 'nonnegative-float',
+      'relation': 'less than',
+      'target': '1000'
+    }
     const constraints = roleConstraints()
     const rf = roleFinder()
     const matcher = lineMatcher('x')
     const permittedFields = allowedFields()
     const cut = assigner(constraints, rf, matcher, permittedFields)
     cut.assignConstraints(assertion)
-    const retrieved = constraints.getConstraints('R')
-    // c = retrieved.select {|x| x.is_a?(J2119::HasFieldConstraint)}
-    expect(c.length).to.eql(1)
-    // c = retrieved.select {|x| x.is_a?(J2119::FieldTypeConstraint)}
-    expect(c.length).to.eql(1)
-    // c = retrieved.select {|x| x.is_a?(J2119::FieldValueConstraint)}
-    expect(c.length).to.eql(2)
+
+    const retrieved = constraints.getConstraints('R').map(r => r.toString())
+    expect(retrieved.length).to.eql(4)
+    expect(retrieved).to.include('<Field foo should be of type float>')
+    expect(retrieved).to.include('<Field foo has constraints {"min":0}>')
+    expect(retrieved).to.include('<Field foo has constraints {"ceiling":1000}>')
+    expect(retrieved).to.include('<Field foo should be present>')
   })
 
   it('should record an is_a role', () => {
@@ -164,7 +180,7 @@ describe('J2119 Assigner', () => {
     const assertion = {
       'role': 'R',
       'fieldtomatch': 'f1',
-      'valtomatch': 33,
+      'valtomatch': '33',
       'newrole': 'S',
       'val_match_present': true
     }
