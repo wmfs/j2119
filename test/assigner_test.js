@@ -11,7 +11,6 @@ const roleFinder = require('../lib/j2119/role_finder')
 const assigner = require('../lib/j2119/assigner')
 
 describe('J2119 Assigner', () => {
-
   it('should attach a condition to a constraint', () => {
     const assertion = {
       'role': 'R',
