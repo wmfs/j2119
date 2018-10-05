@@ -423,39 +423,43 @@ function explore (v, p) {
     })
   })
 
+  it('Wait state', () => {
+    let wait = {
+      Type: 'Wait',
+      Next: 'z',
+      Seconds: 5
+    }
+    obj.States.wait = wait
+    runTest(v, p, obj, 0)
+
+    wait.Seconds = 't'
+    runTest(v, p, obj, 1)
+    delete wait.Seconds
+
+    wait.SecondsPath = 12
+    runTest(v, p, obj, 1)
+    delete wait.SecondsPath
+
+    wait.Timestamp = false
+    runTest(v, p, obj, 1)
+    delete wait.Timestamp
+
+    wait.TimestampPath = 33
+    runTest(v, p, obj, 1)
+    delete wait.TimestampPath
+
+    wait.Timestamp = '2016-03-14T015900Z'
+    runTest(v, p, obj, 0)
+
+    wait.Type = 'Wait'
+    wait.Next = 'z'
+    wait.Seconds = 5
+    wait.SecondsPath = '$.x'
+    runTest(v, p, obj, 1)
+
+    delete obj.States.wait
+  })
   /*
-      # Wait state
-      states['wait' = {
-        :Type => 'Wait',
-        :Next => 'z',
-        :Seconds => 5
-      }
-      runTest(v, p, obj, 0)
-
-      states['wait'].Seconds = 't'
-      runTest(v, p, obj, 1)
-      states['wait'].delete :Seconds
-      states['wait'].SecondsPath = 12
-      runTest(v, p, obj, 1)
-      states['wait'].delete :SecondsPath
-      states['wait'].Timestamp = false
-      runTest(v, p, obj, 1)
-      states['wait'].delete :Timestamp
-      states['wait'].TimestampPath = 33
-      runTest(v, p, obj, 1)
-      states['wait'].delete :TimestampPath
-      states['wait'].Timestamp = "2016-03-14T01:59:00Z"
-      runTest(v, p, obj, 0)
-
-      states['wait' = {
-        :Type => 'Wait',
-        :Next => 'z',
-        :Seconds => 5,
-        :SecondsPath => '$.x'
-      }
-      runTest(v, p, obj, 1)
-      states.delete 'wait'
-
       para = {
         :Type => 'Parallel',
         :End => true,
