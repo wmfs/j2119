@@ -424,7 +424,7 @@ function explore (v, p) {
   })
 
   it('Wait state', () => {
-    let wait = {
+    const wait = {
       Type: 'Wait',
       Next: 'z',
       Seconds: 5
@@ -459,72 +459,72 @@ function explore (v, p) {
 
     delete obj.States.wait
   })
-  /*
-      para = {
-        :Type => 'Parallel',
-        :End => true,
-        :Branches => [
-          {
-            :StartAt => 'p1',
-            :States => {
-              'p1' => {
-                :Type => 'Pass',
-                :End => true
-              }
+
+  it('Parallel state', () => {
+    const para = {
+      Type: 'Parallel',
+      End: true,
+      Branches: [
+        {
+          StartAt: 'p1',
+          States: {
+            'p1': {
+              Type: 'Pass',
+              End: true
             }
           }
-        ]
+        }
+      ]
+    }
+    obj.States.parallel = para
+    runTest(v, p, obj, 0)
+
+    para.Branches[0].StartAt = true
+    runTest(v, p, obj, 1)
+
+    delete para.Branches
+    runTest(v, p, obj, 1)
+
+    para.Branches = 3
+    runTest(v, p, obj, 1)
+
+    para.Branches = []
+    runTest(v, p, obj, 0)
+
+    para.Branches = [ 3 ]
+    runTest(v, p, obj, 1)
+
+    para.Branches = [ { } ]
+    runTest(v, p, obj, 2)
+
+    para.Branches = [
+      {
+        StartAt: 'p1',
+        States: {
+          'p1': {
+            Type: 'foo',
+            End: true
+          }
+        }
       }
-      states['parallel' = para
-      runTest(v, p, obj, 0)
+    ]
 
-      para.Branches][0].StartAt = true
-      runTest(v, p, obj, 1)
-
-      para.delete :Branches
-      runTest(v, p, obj, 1)
-
-      para.Branches = 3
-      runTest(v, p, obj, 1)
-
-      para.Branches = []
-      runTest(v, p, obj, 0)
-
-      para.Branches = [ 3 ]
-      runTest(v, p, obj, 1)
-
-      para.Branches = [ { } ]
-      runTest(v, p, obj, 2)
-
-      para.Branches] =[
-        {
-          :StartAt => 'p1',
-          :States => {
-            'p1' => {
-              :Type => 'foo',
-              :End => true
-            }
+    runTest(v, p, obj, 2)
+    para.Branches = [
+      {
+        foo: 1,
+        StartAt: 'p1',
+        States: {
+          'p1': {
+            Type: 'Pass',
+            End: true
           }
         }
-      ]
-
-      runTest(v, p, obj, 2)
-      para.Branches] =[
-        {
-          :foo => 1,
-          :StartAt => 'p1',
-          :States => {
-            'p1' => {
-              :Type => 'Pass',
-              :End => true
-            }
-          }
-        }
-      ]
-      runTest(v, p, obj, 1)
-    end
-
-  */
+      }
+    ]
+    runTest(v, p, obj, 1)
+    delete obj.States.parallel
+  })
 }
 
 /* function dump (problems) {
