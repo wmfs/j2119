@@ -19,7 +19,7 @@
   "main": "lib/index.js",
   "dependencies": {
     "luxon": "1.4.2",
-    "n-readlines": "^1.0.0",
+    "n-readlines": "1.0.0",
     "xregexp": "4.2.0"
   },
   "devDependencies": {
@@ -33,7 +33,8 @@
     "mocha": "5.2.0",
     "nyc": "13.0.1",
     "semantic-release": "15.9.16",
-    "standard": "12.0.1"
+    "standard": "12.0.1",
+    "tmp": "0.0.33"
   },
   "scripts": {
     "lint": "standard",

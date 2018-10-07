@@ -4,6 +4,8 @@ const chai = require('chai')
 chai.use(require('dirty-chai'))
 const expect = chai.expect
 
+const tmp = require('tmp')
+const fs = require('fs')
 const validator = require('../lib')
 
 const GOOD = '{ ' +
@@ -32,18 +34,14 @@ describe('J2119 Validator', () => {
     expect(p.length).to.eql(0)
   })
 
-  xit('should read a JSON file', () => {
-    /*
-        v = J2119::Validator.new SCHEMA
-        fn = "/tmp/#{$$}.tjf"
-        f = File.open(fn, "w")
-        f.write GOOD
-        f.close
+  it('should read a JSON file', () => {
+    const tmpFile = tmp.fileSync()
+    fs.writeSync(tmpFile.fd, GOOD)
+    fs.closeSync(tmpFile.fd)
 
-        p = v.validate fn
-        File.delete fn
-        expect(p.empty?).to be true
-  */
+    const v = validator(SCHEMA)
+    const p = v.validate(tmpFile.name)
+    expect(p.length).to.eql(0)
   })
 
   it('should produce some sort of sane message with bad JSON', () => {
