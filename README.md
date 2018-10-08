@@ -8,28 +8,26 @@ This package is derived from [awslabs/j2119](https://github.com/awslabs/j2119).
 
 ## Usage
 
-There is only one outward-facing function, J2119Validator.
+There is only one outward-facing function, ```J2119Validator```.
 
 ```javascript
-validator = J2119Validator(schema-file)
+const J2119Validator = require('@wmfs/j2119')
+
+const validator = J2119Validator(schema-filename)
 ```
 
-Where ```schema-file``` is the name of a file containing text in the J2119 
+Where ```schema-filename``` is the name of a file containing text in the J2119
 syntax described below. This returns a validator, which can be re-used,
 and should be, since its construction is moderately expensive:
 
 ```javascript
-problems = validator.validate(json_source)
+const [json, problems] = validator.validate(json_source)
 ```
 
-```json_source``` is the text to be validated; it can be a string or an IO or
-a filename, J2119 tries to do the right thing. ```validate``` returns a string
+```json_source``` is the JSON to be validated; it can be a JSON object, a filename or a file descriptor - J2119 tries to do the right thing.
+ ```validate``` returns a tuple containing the the parsed JSON, and a string
 array containing messages describing any problems it found. If the array is
 empty, then there were no problems.
-
-There are also two utility methods. ```parsed``` returns the parsed form of
-the ```json_source``` text.  The idea is that if you want to do any further
-semantic validation, there's no reason to parse the JSON twice.
 
 ```root``` returns the root "role" in the J2119 schema, a string that is
 useful in making user-friendly error messages.
@@ -66,10 +64,10 @@ The J2119 syntax was invented for the purpose of constructing a validator for
 one specific JSON DSL, and at the time of writing of this document, there is
 no claim that it is suitable as a general-purpose JSON schema facility.  At
 this point, the best way to understand J2119 is by example.  In the
-```data/``` directory of this gem there is a file ```AWL.j2119```, which
+```data/``` directory of this package there is a file ```AWL.j2119```, which
 may be considered a complete worked example of how to specify a DSL.
 
-## To Do 
+## To Do
 
 At time of writing, the awslabs' package carries the following TODO
 
@@ -84,8 +82,8 @@ speed.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub 
+Bug reports and pull requests are welcome on GitHub. Please be aware of our [Code of Conduct](https://github.com/wmfs/j2112/blob/master/CODE_OF_CONDUCT.md)
 
 ## <a name="license"></a>License
-[MIT](https://github.com/wmfs/j2112/blob/master/LICENSE)
+Licensed under the terms of the [MIT license](https://github.com/wmfs/j2112/blob/master/LICENSE). Copyright (c) 2018 West Midlands Fire Service
 
