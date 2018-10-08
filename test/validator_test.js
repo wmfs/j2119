@@ -24,13 +24,13 @@ describe('J2119 Validator', () => {
   it('should accept parsed JSON', () => {
     const v = validator(SCHEMA)
     const j = JSON.parse(GOOD)
-    const p = v.validate(j)
+    const [, p] = v.validate(j)
     expect(p.length).to.eql(0)
   })
 
   it('should accept JSON text', () => {
     const v = validator(SCHEMA)
-    const p = v.validate(GOOD)
+    const [, p] = v.validate(GOOD)
     expect(p.length).to.eql(0)
   })
 
@@ -40,13 +40,14 @@ describe('J2119 Validator', () => {
     fs.closeSync(tmpFile.fd)
 
     const v = validator(SCHEMA)
-    const p = v.validate(tmpFile.name)
+    const [, p] = v.validate(tmpFile.name)
     expect(p.length).to.eql(0)
   })
 
   it('should produce some sort of sane message with bad JSON', () => {
     const v = validator(SCHEMA)
-    const p = v.validate(GOOD + 'x')
+    const [j, p] = v.validate(GOOD + 'x')
+    expect(j).to.be.null()
     expect(p.length).to.eql(1)
   })
 })
