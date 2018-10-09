@@ -50,4 +50,9 @@ describe('J2119 Validator', () => {
     expect(j).to.be.null()
     expect(p.length).to.eql(1)
   })
+
+  it('produce a nice string', () => {
+    const s = validator(SCHEMA).toString()
+    expect(s).to.not.contain('[object')
+  })
 })
