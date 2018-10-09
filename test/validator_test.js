@@ -18,7 +18,7 @@ const GOOD = '{ ' +
   ' } ' +
   '}'
 
-const SCHEMA = 'data/AWL.j2119'
+const SCHEMA = require.resolve('./fixtures/AWL.j2119')
 
 describe('J2119 Validator', () => {
   it('should accept parsed JSON', () => {

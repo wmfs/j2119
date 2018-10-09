@@ -15,10 +15,15 @@ describe('J2119 Parser', () => {
   })
 
   describe('should read definitions', () => {
-    const f = fs.openSync('data/AWL.j2119', 'r')
+    const f = fs.openSync(require.resolve('./fixtures/AWL.j2119'), 'r')
     const p = parser(f)
     const v = nodeValidator(p)
     explore(v, p)
+  })
+
+  it('should fail to read bad definition', () => {
+    const f = fs.openSync(require.resolve('./fixtures/Bad.j2119'), 'r')
+    expect(() => parser(f)).to.throw()
   })
 })
 
