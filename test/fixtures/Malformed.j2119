@@ -4,7 +4,6 @@ A State Machine MUST have a string field named "StartAt".
 A State Machine MAY have a string field named "Comment".
 A State Machine MAY have a string field named "Version".
 A State Machine MAY have a positive-integer field named "TimeoutSeconds" whose value MUST be less than 99999999.
-Calm down there Big Man
 A State MUST have a string field named "Type" whose value MUST be one of "Pass", "Succeed", "Fail", "Task", "Choice", "Wait", or "Parallel".
 A State whose "Type" field's value is "Pass" is a "Pass State".
 A State whose "Type" field's value is "Succeed" is a "Succeed State".
@@ -14,4 +13,4 @@ A State whose "Type" field's value is "Choice" is a "Choice State".
 A State whose "Type" field's value is "Wait" is a "Wait State".
 A State whose "Type" field's value is "Parallel" is a "Parallel State".
 A State MAY have a string field named "Comment".
-This document specifies a JSON object called a "State Machine".
+A Choice Rule MAY have a nonempty-object-array field named "And"; each element is a "Nested Rule".

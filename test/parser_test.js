@@ -14,16 +14,69 @@ describe('J2119 Parser', () => {
     expect(parser.ROOT.test('This document specifies a JSON object called a "State Machine".')).to.be.true()
   })
 
-  describe('should read definitions', () => {
-    const f = fs.openSync(require.resolve('./fixtures/AWL.j2119'), 'r')
-    const p = parser(f)
-    const v = nodeValidator(p)
-    explore(v)
+  describe('read good definitions', () => {
+    describe('AWL.j2119', () => {
+      const p = parser(open('./fixtures/AWL.j2119'))
+      const v = nodeValidator(p)
+      explore(v)
+    })
+    describe('AWL.j2119 and Tymly-extension.j2119', () => {
+      describe('before loading extensions', () => {
+        const p = parser(open('./fixtures/AWL.j2119'))
+        const v = nodeValidator(p)
+
+        explore(v)
+        tymlyExtensions('can\'t validate when no extensions loaded', v, 2)
+      })
+
+      describe('after loading extensions', () => {
+        const p = parser(open('./fixtures/AWL.j2119'))
+        const v = nodeValidator(p)
+        p.extend(open('./fixtures/TymlyExtension.j2119'))
+
+        tymlyExtensions('validate once extensions loaded', v, 0)
+      })
+    })
   })
 
-  it('should fail to read bad definition', () => {
-    const f = fs.openSync(require.resolve('./fixtures/Bad.j2119'), 'r')
-    expect(() => parser(f)).to.throw()
+  describe('fail on bad definitions', () => {
+    it('fail to read bad definition', () => {
+      const f = open('./fixtures/Bad.j2119')
+      expect(() => parser(f)).to.throw('Unrecognized line')
+    })
+
+    it('fail to read malformed definition', () => {
+      const f = open('./fixtures/Malformed.j2119')
+      expect(() => parser(f)).to.throw('Unprocessable line')
+    })
+    it('fail to read extension definition as root definition', () => {
+      const f = open('./fixtures/TymlyExtension.j2119')
+      expect(() => parser(f)).to.throw('Root declaration must be first line')
+    })
+
+    it('good parser, not an extension', () => {
+      const p = parser(open('./fixtures/AWL.j2119'))
+      const ext = open('./fixtures/AWL.j2119')
+      expect(() => p.extend(ext)).to.throw('Extension declaration must be first line')
+    })
+
+    it('good parser, extension for different object', () => {
+      const p = parser(open('./fixtures/AWL.j2119'))
+      const ext = open('./fixtures/Chum.j2119')
+      expect(() => p.extend(ext)).to.throw('Extension does not extend "State Machine"')
+    })
+
+    it('good parser, garbage', () => {
+      const p = parser(open('./fixtures/AWL.j2119'))
+      const ext = open('./parser_test.js')
+      expect(() => p.extend(ext)).to.throw('Extension declaration must be first line')
+    })
+
+    it('good parser, over eager extension', () => {
+      const p = parser(open('./fixtures/AWL.j2119'))
+      const ext = open('./fixtures/OvereagerExtension.j2119')
+      expect(() => p.extend(ext)).to.throw('Only one extension declaration permitted per file')
+    })
   })
 })
 
@@ -532,6 +585,23 @@ function explore (v) {
   })
 }
 
+function tymlyExtensions (label, v, count) {
+  it(label, () => {
+    const tymlyObj = {
+      namespace: 'Test',
+      name: 'Trumpet',
+      StartAt: 'pass',
+      States: {
+        pass: {
+          Type: 'Pass',
+          End: true
+        }
+      }
+    }
+
+    runTest(v, tymlyObj, count)
+  })
+}
 /* function dump (problems) {
   console.log('\n')
   problems.forEach(problem => console.log(`P: ${problem}`))
@@ -542,7 +612,14 @@ function runTest (v, obj, wantedErrorCount) {
 
   const problems = v.validateDocument(json)
   if (wantedErrorCount !== -1) {
+    if (problems.length !== wantedErrorCount) {
+      problems.forEach(p => console.log(`P: ${p}`))
+    }
     expect(problems.length).to.eql(wantedErrorCount)
   }
   return problems
+}
+
+function open (filepath) {
+  return fs.openSync(require.resolve(filepath), 'r')
 }

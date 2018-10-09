@@ -1,0 +1,3 @@
+This document specifies an extension to a JSON object called a "Friend".
+A Friend MAY have a string field named "bestie".
+A Friend MAY have a string field named "chum".
