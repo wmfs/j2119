@@ -18,7 +18,7 @@ describe('J2119 Parser', () => {
     const f = fs.openSync(require.resolve('./fixtures/AWL.j2119'), 'r')
     const p = parser(f)
     const v = nodeValidator(p)
-    explore(v, p)
+    explore(v)
   })
 
   it('should fail to read bad definition', () => {
@@ -27,33 +27,33 @@ describe('J2119 Parser', () => {
   })
 })
 
-function explore (v, p) {
+function explore (v) {
   // just gonna run through the state machine spec exercising each
   //  constraint
 
   const obj = { StartAt: 'pass' }
 
   it('root', () => {
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     delete obj.StartAt
     obj.States = {}
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     obj.StartAt = 'pass'
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     obj.Version = 3
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     obj.Version = '1.0'
     obj.Comment = true
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     obj.Comment = 'Hi'
     const states = obj.States
     states.pass = {}
-    runTest(v, p, obj, 2)
+    runTest(v, obj, 2)
   })
 
   it('Pass state', () => {
@@ -62,37 +62,37 @@ function explore (v, p) {
     pass.Next = 's1'
     pass.Type = 'Pass'
 
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     pass.Type = 'flibber'
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     pass.Type = 'Pass'
     pass.Comment = 23.5
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     pass.Type = 'Pass'
     pass.Comment = ''
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     pass.Type = 'Pass'
     pass.Comment = ''
     pass.End = 11
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     pass.End = true
-    runTest(v, p, obj, -1)
+    runTest(v, obj, -1)
 
     delete pass.Next
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     pass.InputPath = 1
     pass.ResultPath = 2
-    runTest(v, p, obj, 2)
+    runTest(v, obj, 2)
 
     pass.InputPath = 'foo'
     pass.ResultPath = 'bar'
-    runTest(v, p, obj, 2)
+    runTest(v, obj, 2)
   })
 
   it('Fail state', () => {
@@ -107,69 +107,69 @@ function explore (v, p) {
     delete pass.InputPath
     delete pass.ResultPath
     obj.States.fail = fail
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     fail.InputPath = 'foo'
     fail.ResultPath = 'foo'
-    runTest(v, p, obj, 4)
+    runTest(v, obj, 4)
 
     delete fail.InputPath
     delete fail.ResultPath
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     fail.Cause = false
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
     fail.Cause = 'ouch'
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
   })
 
   it('Task State', () => {
     const task = { Type: 'Task', Resource: 'a:b', Next: 'fail' }
     obj.States.task = task
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     task.End = 'foo'
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     task.End = true
     delete task.Next
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     task.Resource = 11
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
     task.Resource = 'not a uri'
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     task.Resource = 'foo:bar'
     task.TimeoutSeconds = 'x'
     task.HeartbeatSeconds = 3.9
-    runTest(v, p, obj, -1)
+    runTest(v, obj, -1)
 
     task.TimeoutSeconds = -2
     task.HeartbeatSeconds = 0
-    runTest(v, p, obj, -1)
+    runTest(v, obj, -1)
 
     task.TimeoutSeconds = 33
     task.HeartbeatSeconds = 44
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     task.Retry = 1
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     task.Retry = [ 1 ]
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     task.Retry = [ { MaxAttempts: 0 }, { BackoffRate: 1.5 } ]
-    runTest(v, p, obj, 2)
+    runTest(v, obj, 2)
 
     task.Retry = [ { ErrorEquals: 1 }, { ErrorEquals: true } ]
-    runTest(v, p, obj, 2)
+    runTest(v, obj, 2)
 
     task.Retry = [ { ErrorEquals: [ 1 ] }, { ErrorEquals: [ true ] } ]
-    runTest(v, p, obj, 2)
+    runTest(v, obj, 2)
 
     task.Retry = [ { ErrorEquals: [ 'foo' ] }, { ErrorEquals: [ 'bar' ] } ]
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     const rt = {
       ErrorEquals: [ 'foo' ],
@@ -178,40 +178,40 @@ function explore (v, p) {
       BackoffRate: {}
     }
     task.Retry = [ rt ]
-    runTest(v, p, obj, 3)
+    runTest(v, obj, 3)
 
     rt.IntervalSeconds = 0
     rt.MaxAttempts = -1
     rt.BackoffRate = 0.9
-    runTest(v, p, obj, 3)
+    runTest(v, obj, 3)
 
     rt.IntervalSeconds = 5
     rt.MaxAttempts = 99999999
     rt.BackoffRate = 1.1
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     rt.MaxAttempts = 99999998
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     const catchExpr = { ErrorEquals: [ 'foo' ], Next: 'n' }
     task.Catch = [ catchExpr ]
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     delete catchExpr.Next
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     catchExpr.Next = true
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     catchExpr.Next = 't'
     delete catchExpr.ErrorEquals
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     catchExpr.ErrorEquals = []
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     catchExpr.ErrorEquals = [ 3 ]
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     catchExpr.ErrorEquals = [ 'x' ]
   })
@@ -234,39 +234,39 @@ function explore (v, p) {
       delete obj.States.fail
 
       obj.States['choice'] = choice
-      runTest(v, p, obj, 0)
+      runTest(v, obj, 0)
 
       choice.Next = 'a'
-      runTest(v, p, obj, 1)
+      runTest(v, obj, 1)
       delete choice.Next
 
       choice.End = true
-      runTest(v, p, obj, 1)
+      runTest(v, obj, 1)
       delete choice.End
 
       const choices = choice.Choices
       choice.Choices = []
-      runTest(v, p, obj, 1)
+      runTest(v, obj, 1)
 
       choice.Choices = [1, '2']
-      runTest(v, p, obj, 2)
+      runTest(v, obj, 2)
       choices.Next = 'y'
       choices.Variable = '$.c.d'
       choices.NumericEquals = 5
       choice.Choices = choices
-      runTest(v, p, obj, 0)
+      runTest(v, obj, 0)
     })
 
     it('Nester state', () => {
       const nester = { And: 'foo' }
       const choices = [nester]
       choice.Choices = choices
-      runTest(v, p, obj, 2)
+      runTest(v, obj, 2)
 
       nester.Next = 'x'
-      runTest(v, p, obj, 1)
+      runTest(v, obj, 1)
       nester.And = []
-      runTest(v, p, obj, 1)
+      runTest(v, obj, 1)
 
       nester.And = [
         {
@@ -282,7 +282,7 @@ function explore (v, p) {
           BooleanEquals: false
         }
       ]
-      runTest(v, p, obj, 0)
+      runTest(v, obj, 0)
     })
 
     it('Data types', () => {
@@ -326,12 +326,12 @@ function explore (v, p) {
 
       for (const comp of bad) {
         choice.Choices = [comp]
-        runTest(v, p, obj, 1)
+        runTest(v, obj, 1)
       }
 
       for (const comp of good) {
         choice.Choices = [comp]
-        runTest(v, p, obj, 0)
+        runTest(v, obj, 0)
       }
     })
 
@@ -359,7 +359,7 @@ function explore (v, p) {
           Next: 'ValueInTwenties'
         }
       ]
-      runTest(v, p, obj, 0)
+      runTest(v, obj, 0)
 
       choice.Choices = [
         {
@@ -370,7 +370,7 @@ function explore (v, p) {
           Next: 'Public'
         }
       ]
-      runTest(v, p, obj, 1)
+      runTest(v, obj, 1)
 
       choice.Choices = [
         {
@@ -387,7 +387,7 @@ function explore (v, p) {
           Next: 'ValueInTwenties'
         }
       ]
-      runTest(v, p, obj, 1)
+      runTest(v, obj, 1)
 
       choice.Choices = [
         {
@@ -405,7 +405,7 @@ function explore (v, p) {
           Next: 'ValueInTwenties'
         }
       ]
-      runTest(v, p, obj, 1)
+      runTest(v, obj, 1)
 
       choice.Choices = [
         {
@@ -423,7 +423,7 @@ function explore (v, p) {
           Next: 'ValueInTwenties'
         }
       ]
-      runTest(v, p, obj, 2)
+      runTest(v, obj, 2)
       delete obj.States.choice
     })
   })
@@ -435,32 +435,32 @@ function explore (v, p) {
       Seconds: 5
     }
     obj.States.wait = wait
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     wait.Seconds = 't'
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
     delete wait.Seconds
 
     wait.SecondsPath = 12
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
     delete wait.SecondsPath
 
     wait.Timestamp = false
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
     delete wait.Timestamp
 
     wait.TimestampPath = 33
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
     delete wait.TimestampPath
 
     wait.Timestamp = '2016-03-14T015900Z'
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     wait.Type = 'Wait'
     wait.Next = 'z'
     wait.Seconds = 5
     wait.SecondsPath = '$.x'
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     delete obj.States.wait
   })
@@ -482,25 +482,25 @@ function explore (v, p) {
       ]
     }
     obj.States.parallel = para
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     para.Branches[0].StartAt = true
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     delete para.Branches
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     para.Branches = 3
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     para.Branches = []
-    runTest(v, p, obj, 0)
+    runTest(v, obj, 0)
 
     para.Branches = [ 3 ]
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
 
     para.Branches = [ { } ]
-    runTest(v, p, obj, 2)
+    runTest(v, obj, 2)
 
     para.Branches = [
       {
@@ -514,7 +514,7 @@ function explore (v, p) {
       }
     ]
 
-    runTest(v, p, obj, 2)
+    runTest(v, obj, 2)
     para.Branches = [
       {
         foo: 1,
@@ -527,7 +527,7 @@ function explore (v, p) {
         }
       }
     ]
-    runTest(v, p, obj, 1)
+    runTest(v, obj, 1)
     delete obj.States.parallel
   })
 }
@@ -537,11 +537,10 @@ function explore (v, p) {
   problems.forEach(problem => console.log(`P: ${problem}`))
 } */
 
-function runTest (v, p, obj, wantedErrorCount, wantedStrings = []) {
-  const problems = []
+function runTest (v, obj, wantedErrorCount) {
   const json = JSON.parse(JSON.stringify(obj))
 
-  v.validateNode(json, p.root, [p.root], problems)
+  const problems = v.validateDocument(json)
   if (wantedErrorCount !== -1) {
     expect(problems.length).to.eql(wantedErrorCount)
   }
