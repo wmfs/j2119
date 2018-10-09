@@ -13,7 +13,7 @@ There is only one outward-facing function, `J2119Validator`.
 ```javascript
 const J2119Validator = require('@wmfs/j2119')
 
-const validator = J2119Validator(schema-filename, [...schema-extension-filenames])
+const validator = J2119Validator(schema-filename, ...[schema-extension-filenames])
 ```
 
 * `schema-filename` is the name of a file containing text in the J2119
