@@ -7,7 +7,7 @@ const expect = chai.expect
 const roleConstraints = require('../lib/j2119/role_constraints')
 const constraint = require('../lib/j2119/constraints')
 
-describe('roleConstraints', () => {
+describe('J2119 RoleConstraints', () => {
   describe('should successfully remember constraints', () => {
     const cut = roleConstraints()
     const c1 = constraint.hasField('foo')

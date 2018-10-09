@@ -8,7 +8,7 @@ const oxford = require('../lib/j2119/oxford')
 const lineMatcher = require('../lib/j2119/line_matcher')
 const XRegExp = require('xregexp')
 
-describe('oxford', () => {
+describe('J2119 Oxford', () => {
   describe('should show the underlying pattern working', () => {
     const re = new XRegExp('^' + oxford.BASIC + '$')
     const targets = [

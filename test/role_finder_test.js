@@ -6,7 +6,7 @@ const expect = chai.expect
 
 const roleFinder = require('../lib/j2119/role_finder')
 
-describe('roleFinder', () => {
+describe('J2119 RoleFinder', () => {
   it('should successfully assign an additional role based on a role', () => {
     const cut = roleFinder()
     const json = JSON.parse('{"a": 3}')

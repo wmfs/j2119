@@ -8,7 +8,7 @@ const oxford = require('../lib/j2119/oxford')
 const lineMatcher = require('../lib/j2119/line_matcher')
 const XRegExp = require('xregexp')
 
-describe('lineMatcher', () => {
+describe('J2119 LineMatcher', () => {
   const EACHOF_LINES = [
     'Each of a Pass State, a Task State, a Choice State, and a Parallel State MAY have a boolean field named "End".',
     'Each of a Succeed State and a Fail State is a "Terminal State".',

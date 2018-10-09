@@ -12,6 +12,7 @@ const nodeValidator = require('../lib/j2119/node_validator')
 describe('J2119 Parser', () => {
   it('should match ROOT', () => {
     expect(parser.ROOT.test('This document specifies a JSON object called a "State Machine".')).to.be.true()
+    expect(parser.EXTENSION_ROOT.test('This document specifies an extension to a JSON object called a "State Machine".')).to.be.true()
   })
 
   describe('read good definitions', () => {
