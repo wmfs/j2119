@@ -20,7 +20,28 @@ const STATE_MACHINE_WITH_EXTENSION = {
   StartAt: 'x',
   States: {
     x: {
-      Type: 'Pass',
+      Type: 'Task',
+      Resource: 'module:monkeyPunk',
+      ResourceConfig: {
+        param: 'tree',
+        obj: {
+          x: 'X',
+          y: {
+            down: {
+              deep: {
+                and: {
+                  deeper: {
+                    and: {
+                      deeper: {
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       End: true
     }
   },
@@ -64,6 +85,7 @@ describe('J2119 Validator', () => {
 
   it('load an extension', () => {
     const v = validator(SCHEMA, EXTENSION)
+
     const p = v.validate(STATE_MACHINE)
     expect(p.length).to.eql(2) // missing extensions!
 
