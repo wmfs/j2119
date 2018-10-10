@@ -4,8 +4,6 @@ const chai = require('chai')
 chai.use(require('dirty-chai'))
 const expect = chai.expect
 
-const tmp = require('tmp')
-const fs = require('fs')
 const validator = require('../lib')
 
 const STATE_MACHINE = {
@@ -35,33 +33,28 @@ const EXTENSION = require.resolve('./fixtures/TymlyExtension.j2119')
 const BAD = require.resolve('./fixtures/Bad.j2119')
 
 describe('J2119 Validator', () => {
-  it('should accept parsed JSON', () => {
+  it('validate parsed JSON', () => {
     const v = validator(SCHEMA)
-    const [, p] = v.validate(STATE_MACHINE)
+    const p = v.validate(STATE_MACHINE)
     expect(p.length).to.eql(0)
   })
 
-  it('should accept JSON text', () => {
+  it('fail to validate a text string', () => {
     const v = validator(SCHEMA)
-    const [, p] = v.validate(JSON.stringify(STATE_MACHINE))
-    expect(p.length).to.eql(0)
+    const p = v.validate('{ "States": "WHOOPS I AM A STRING }')
+    expect(p.length).to.eql(1)
   })
 
-  it('should read a JSON file', () => {
-    const tmpFile = tmp.fileSync()
-    fs.writeSync(tmpFile.fd, JSON.stringify(STATE_MACHINE))
-    fs.closeSync(tmpFile.fd)
-
+  it('fail to validate an array', () => {
     const v = validator(SCHEMA)
-    const [, p] = v.validate(tmpFile.name)
-    expect(p.length).to.eql(0)
+    const p = v.validate([ STATE_MACHINE ])
+    expect(p.length).to.eql(1)
   })
 
   it('should produce some sort of sane message with bad JSON', () => {
     const v = validator(SCHEMA)
-    const [j, p] = v.validate(STATE_MACHINE + 'x')
-    expect(j).to.be.null()
-    expect(p.length).to.eql(1)
+    const p = v.validate({})
+    expect(p.length).to.not.eql(0)
   })
 
   it('produce a nice string', () => {
@@ -71,10 +64,10 @@ describe('J2119 Validator', () => {
 
   it('load an extension', () => {
     const v = validator(SCHEMA, EXTENSION)
-    const [, p] = v.validate(STATE_MACHINE)
+    const p = v.validate(STATE_MACHINE)
     expect(p.length).to.eql(2) // missing extensions!
 
-    const [, np] = v.validate(STATE_MACHINE_WITH_EXTENSION)
+    const np = v.validate(STATE_MACHINE_WITH_EXTENSION)
     expect(np.length).to.eql(0)
   })
 

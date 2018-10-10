@@ -135,7 +135,7 @@ function explore (v) {
     runTest(v, obj, 1)
 
     pass.End = true
-    runTest(v, obj, -1)
+    runTest(v, obj, 1)
 
     delete pass.Next
     runTest(v, obj, 0)
@@ -197,11 +197,11 @@ function explore (v) {
     task.Resource = 'foo:bar'
     task.TimeoutSeconds = 'x'
     task.HeartbeatSeconds = 3.9
-    runTest(v, obj, -1)
+    runTest(v, obj, 2)
 
     task.TimeoutSeconds = -2
     task.HeartbeatSeconds = 0
-    runTest(v, obj, -1)
+    runTest(v, obj, 2)
 
     task.TimeoutSeconds = 33
     task.HeartbeatSeconds = 44
@@ -603,21 +603,13 @@ function tymlyExtensions (label, v, count) {
     runTest(v, tymlyObj, count)
   })
 }
-/* function dump (problems) {
-  console.log('\n')
-  problems.forEach(problem => console.log(`P: ${problem}`))
-} */
 
 function runTest (v, obj, wantedErrorCount) {
   const json = JSON.parse(JSON.stringify(obj))
 
   const problems = v.validateDocument(json)
-  if (wantedErrorCount !== -1) {
-    if (problems.length !== wantedErrorCount) {
-      problems.forEach(p => console.log(`P: ${p}`))
-    }
-    expect(problems.length).to.eql(wantedErrorCount)
-  }
+  expect(problems.length).to.eql(wantedErrorCount)
+
   return problems
 }
 

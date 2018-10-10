@@ -33,8 +33,7 @@
     "mocha": "5.2.0",
     "nyc": "13.0.1",
     "semantic-release": "15.9.16",
-    "standard": "12.0.1",
-    "tmp": "0.0.33"
+    "standard": "12.0.1"
   },
   "scripts": {
     "lint": "standard",

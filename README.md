@@ -27,14 +27,12 @@ the function will throw an exception.
 
 ### validate
 ```javascript
-const [json, problems] = validator.validate(json_source)
+const problems = validator.validate(json)
 ```
 
-* `json_source` is the JSON to be validated; it can be a JSON object, a filename or a file descriptor - J2119 tries to do the right thing.
+* `source` is the JSON object to be validated.
  
- `validate` returns a tuple containing the the parsed JSON, and a string
-array of error messages describing any problems it found. If the array is
-empty, then there were no problems. The error messages are human-readable and have the general form `<json-path to error site> <description of error>`.
+ `validate` returns a string array of error messages describing any problems it found. If the array is empty, then there were no problems. The error messages are human-readable and have the general form `<json-path to error site> <description of error>`.
 
 ### root
 ```javascript
