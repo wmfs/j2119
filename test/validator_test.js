@@ -121,6 +121,7 @@ const STATE_MACHINE_WITH_RESOURCE_CONFIG_ARRAY = {
 
 const SCHEMA = require.resolve('./fixtures/AWL.j2119')
 const EXTENSION = require.resolve('./fixtures/TymlyExtension.j2119')
+const ALTERNAEXTENSION = require.resolve('./fixtures/AlternaTymlyExtension.j2119')
 const BAD = require.resolve('./fixtures/Bad.j2119')
 
 describe('J2119 Validator', () => {
@@ -165,17 +166,41 @@ describe('J2119 Validator', () => {
     expect(s).to.not.contain('[object')
   })
 
-  it('load an extension', () => {
+  describe('load an Tymly extension', () => {
     const v = validator(SCHEMA, EXTENSION)
 
-    const p = v.validate(STATE_MACHINE)
-    expect(p.length).to.eql(2) // missing extensions!
+    it('missing extension elements', () => {
+      const p = v.validate(STATE_MACHINE)
+      expect(p.length).to.eql(2) // missing extensions!
+    })
 
-    const np = v.validate(STATE_MACHINE_WITH_RESOURCE_CONFIG_OBJECT)
-    expect(np.length).to.eql(0)
+    it('resource config object is valid', () => {
+      const np = v.validate(STATE_MACHINE_WITH_RESOURCE_CONFIG_OBJECT)
+      expect(np.length).to.eql(0)
+    })
 
-    const nnp = v.validate(STATE_MACHINE_WITH_RESOURCE_CONFIG_ARRAY)
-    expect(nnp.length).to.eql(0)
+    it('resource config array is not valid', () => {
+      const nnp = v.validate(STATE_MACHINE_WITH_RESOURCE_CONFIG_ARRAY)
+      expect(nnp.length).to.eql(1)
+    })
+  })
+  describe('load an AlternaTymly extension', () => {
+    const v = validator(SCHEMA, ALTERNAEXTENSION)
+
+    it('missing extension elements', () => {
+      const p = v.validate(STATE_MACHINE)
+      expect(p.length).to.eql(2) // missing extensions!
+    })
+
+    it('resource config object is valid', () => {
+      const np = v.validate(STATE_MACHINE_WITH_RESOURCE_CONFIG_OBJECT)
+      expect(np.length).to.eql(1)
+    })
+
+    it('resource config array is not valid', () => {
+      const nnp = v.validate(STATE_MACHINE_WITH_RESOURCE_CONFIG_ARRAY)
+      expect(nnp.length).to.eql(0)
+    })
   })
 
   it('report when unable to load', () => {
