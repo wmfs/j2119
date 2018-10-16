@@ -1,4 +1,4 @@
 This document specifies an extension to a JSON object called a "State Machine".
 A State Machine MUST have a string field named "namespace".
 A State Machine MUST have a string field named "name".
-A Task State MAY have an object field named "ResourceConfig".
+A Task State MAY have a field named "ResourceConfig".

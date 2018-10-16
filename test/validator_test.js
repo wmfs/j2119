@@ -16,7 +16,42 @@ const STATE_MACHINE = {
   }
 }
 
-const STATE_MACHINE_WITH_EXTENSION = {
+const WITH_ARRAY_RESULT = {
+  StartAt: 'No-op',
+  States: {
+    'No-op': {
+      Type: 'Pass',
+      ResultPath: '$.coords',
+      Result: [
+        'foo',
+        'bar',
+        {
+          bazz: 123
+        }
+      ],
+      End: true
+    }
+  }
+}
+
+const WITH_OBJECT_RESULT = {
+  StartAt: 'No-op',
+  States: {
+    'No-op': {
+      Type: 'Pass',
+      ResultPath: '$.coords',
+      Result: {
+        foo: {
+          'x-datum': 0.381018,
+          'y-datum': 622.2269926397355
+        }
+      },
+      End: true
+    }
+  }
+}
+
+const STATE_MACHINE_WITH_RESOURCE_CONFIG_OBJECT = {
   StartAt: 'x',
   States: {
     x: {
@@ -49,6 +84,41 @@ const STATE_MACHINE_WITH_EXTENSION = {
   name: 'Extension'
 }
 
+const STATE_MACHINE_WITH_RESOURCE_CONFIG_ARRAY = {
+  StartAt: 'x',
+  States: {
+    x: {
+      Type: 'Task',
+      Resource: 'module:monkeyPunk',
+      ResourceConfig: [
+        'param',
+        {
+          x: 'X',
+          y: {
+            down: {
+              deep: {
+                and: {
+                  deeper: {
+                    and: {
+                      deeper: {
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        1,
+        true
+      ],
+      End: true
+    }
+  },
+  namespace: 'Test',
+  name: 'Extension'
+}
+
 const SCHEMA = require.resolve('./fixtures/AWL.j2119')
 const EXTENSION = require.resolve('./fixtures/TymlyExtension.j2119')
 const BAD = require.resolve('./fixtures/Bad.j2119')
@@ -57,6 +127,18 @@ describe('J2119 Validator', () => {
   it('validate parsed JSON', () => {
     const v = validator(SCHEMA)
     const p = v.validate(STATE_MACHINE)
+    expect(p.length).to.eql(0)
+  })
+
+  it('validate state machine with result object', () => {
+    const v = validator(SCHEMA)
+    const p = v.validate(WITH_OBJECT_RESULT)
+    expect(p.length).to.eql(0)
+  })
+
+  it('validate state machine with result array', () => {
+    const v = validator(SCHEMA)
+    const p = v.validate(WITH_ARRAY_RESULT)
     expect(p.length).to.eql(0)
   })
 
@@ -89,8 +171,11 @@ describe('J2119 Validator', () => {
     const p = v.validate(STATE_MACHINE)
     expect(p.length).to.eql(2) // missing extensions!
 
-    const np = v.validate(STATE_MACHINE_WITH_EXTENSION)
+    const np = v.validate(STATE_MACHINE_WITH_RESOURCE_CONFIG_OBJECT)
     expect(np.length).to.eql(0)
+
+    const nnp = v.validate(STATE_MACHINE_WITH_RESOURCE_CONFIG_ARRAY)
+    expect(nnp.length).to.eql(0)
   })
 
   it('report when unable to load', () => {
