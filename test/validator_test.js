@@ -16,6 +16,17 @@ const STATE_MACHINE = {
   }
 }
 
+const WITH_NULL_RESULT_PATH = {
+  StartAt: 'x',
+  States: {
+    x: {
+      Type: 'Pass',
+      ResultPath: null,
+      End: true
+    }
+  }
+}
+
 const WITH_ARRAY_RESULT = {
   StartAt: 'No-op',
   States: {
@@ -128,6 +139,12 @@ describe('J2119 Validator', () => {
   it('validate parsed JSON', () => {
     const v = validator(SCHEMA)
     const p = v.validate(STATE_MACHINE)
+    expect(p.length).to.eql(0)
+  })
+
+  it('validate state machine with null result path', () => {
+    const v = validator(SCHEMA)
+    const p = v.validate(WITH_NULL_RESULT_PATH)
     expect(p.length).to.eql(0)
   })
 
