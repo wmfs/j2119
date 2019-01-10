@@ -24,7 +24,7 @@ describe('J2119 NodeValidator', () => {
     // 'f' should be between 0 and 5
     const json = {
       b: 1,
-      c: 1,
+      c: 'chaffy',
       d: 0.3,
       e: true,
       f: 10

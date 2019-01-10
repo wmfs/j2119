@@ -235,7 +235,8 @@ describe('J2119 Constraint', () => {
       const tdata = {
         string: 33,
         integer: 'foo',
-        float: 17,
+        float: false,
+        numeric: 'puddle',
         boolean: 'null',
         timestamp: '2x16-03-14T015900Z',
         JSONPath: 'blibble',
