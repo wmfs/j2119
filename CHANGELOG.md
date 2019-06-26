@@ -1,3 +1,15 @@
+# [1.8.0](https://github.com/wmfs/j2119/compare/v1.7.1...v1.8.0) (2019-06-26)
+
+
+### 🛠 Builds
+
+* **deps:** update luxon requirement from 1.8.1 to 1.16.0 ([e25d81a](https://github.com/wmfs/j2119/commit/e25d81a))
+* **deps:** update xregexp requirement from 4.2.0 to 4.2.4 ([de80b4c](https://github.com/wmfs/j2119/commit/de80b4c))
+* **deps-dev:** update [@semantic-release](https://github.com/semantic-release)/git requirement ([a02778e](https://github.com/wmfs/j2119/commit/a02778e))
+* **deps-dev:** update codecov requirement from 3.1.0 to 3.5.0 ([72ffeb7](https://github.com/wmfs/j2119/commit/72ffeb7))
+* **deps-dev:** update mocha requirement from 5.2.0 to 6.1.4 ([c4b1cbd](https://github.com/wmfs/j2119/commit/c4b1cbd))
+* **deps-dev:** update semantic-release requirement ([83d6d3d](https://github.com/wmfs/j2119/commit/83d6d3d))
+
 ## [1.7.1](https://github.com/wmfs/j2119/compare/v1.7.0...v1.7.1) (2019-01-10)
 
 
