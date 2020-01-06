@@ -1,3 +1,26 @@
+# [1.9.0](https://github.com/wmfs/j2119/compare/v1.8.0...v1.9.0) (2020-01-06)
+
+
+### 🛠 Builds
+
+* **deps:** bump luxon from 1.16.0 to 1.21.3 ([40168eb](https://github.com/wmfs/j2119/commit/40168ebadf15c0bffc2e66c5a5457056365ec0fc))
+* **deps-dev:** bump mocha from 6.2.2 to 7.0.0 ([541fd88](https://github.com/wmfs/j2119/commit/541fd8883ea7642731c9aa8c037b8db2216f6918))
+* **deps-dev:** bump packages ([272e620](https://github.com/wmfs/j2119/commit/272e62043a7e5483d67a1e5e236ea312063997da))
+* **deps-dev:** update [@semantic-release](https://github.com/semantic-release)/git requirement ([91d9e4a](https://github.com/wmfs/j2119/commit/91d9e4a1db3810065f06aba297f99d9002c5554b))
+* **deps-dev:** update dev dependancies ([06c90cc](https://github.com/wmfs/j2119/commit/06c90cc0881958c124e899a08558816c53b141e2))
+* **deps-dev:** update nyc requirement from 13.1.0 to 14.1.1 ([a93ee1e](https://github.com/wmfs/j2119/commit/a93ee1e16c8eb621fbbebbdedbe04d60da578114))
+
+
+### 📚 Documentation
+
+* Add CircleCI badge ([924bde1](https://github.com/wmfs/j2119/commit/924bde1d396daefb75c99d9b378bba89bd197f8b))
+
+
+### ⚙️ Continuous Integrations
+
+* **circle:** Add CircleCI config ([7d80a19](https://github.com/wmfs/j2119/commit/7d80a1926006142beb158a06b4ba8e93714d1278))
+* **travis:** Remove Travis config ([f8c3ba7](https://github.com/wmfs/j2119/commit/f8c3ba71de07bd477c196b43961b5b92e94e5f61))
+
 # [1.8.0](https://github.com/wmfs/j2119/compare/v1.7.1...v1.8.0) (2019-06-26)
 
 
