@@ -168,7 +168,7 @@ describe('J2119 Validator', () => {
 
   it('fail to validate an array', () => {
     const v = validator(SCHEMA)
-    const p = v.validate([ STATE_MACHINE ])
+    const p = v.validate([STATE_MACHINE])
     expect(p.length).to.eql(1)
   })
 
