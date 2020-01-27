@@ -210,28 +210,28 @@ function explore (v) {
     task.Retry = 1
     runTest(v, obj, 1)
 
-    task.Retry = [ 1 ]
+    task.Retry = [1]
     runTest(v, obj, 1)
 
-    task.Retry = [ { MaxAttempts: 0 }, { BackoffRate: 1.5 } ]
+    task.Retry = [{ MaxAttempts: 0 }, { BackoffRate: 1.5 }]
     runTest(v, obj, 2)
 
-    task.Retry = [ { ErrorEquals: 1 }, { ErrorEquals: true } ]
+    task.Retry = [{ ErrorEquals: 1 }, { ErrorEquals: true }]
     runTest(v, obj, 2)
 
-    task.Retry = [ { ErrorEquals: [ 1 ] }, { ErrorEquals: [ true ] } ]
+    task.Retry = [{ ErrorEquals: [1] }, { ErrorEquals: [true] }]
     runTest(v, obj, 2)
 
-    task.Retry = [ { ErrorEquals: [ 'foo' ] }, { ErrorEquals: [ 'bar' ] } ]
+    task.Retry = [{ ErrorEquals: ['foo'] }, { ErrorEquals: ['bar'] }]
     runTest(v, obj, 0)
 
     const rt = {
-      ErrorEquals: [ 'foo' ],
+      ErrorEquals: ['foo'],
       IntervalSeconds: 'bar',
       MaxAttempts: true,
       BackoffRate: {}
     }
-    task.Retry = [ rt ]
+    task.Retry = [rt]
     runTest(v, obj, 3)
 
     rt.IntervalSeconds = 0
@@ -247,8 +247,8 @@ function explore (v) {
     rt.MaxAttempts = 99999998
     runTest(v, obj, 0)
 
-    const catchExpr = { ErrorEquals: [ 'foo' ], Next: 'n' }
-    task.Catch = [ catchExpr ]
+    const catchExpr = { ErrorEquals: ['foo'], Next: 'n' }
+    task.Catch = [catchExpr]
     runTest(v, obj, 0)
 
     delete catchExpr.Next
@@ -264,10 +264,10 @@ function explore (v) {
     catchExpr.ErrorEquals = []
     runTest(v, obj, 0)
 
-    catchExpr.ErrorEquals = [ 3 ]
+    catchExpr.ErrorEquals = [3]
     runTest(v, obj, 1)
 
-    catchExpr.ErrorEquals = [ 'x' ]
+    catchExpr.ErrorEquals = ['x']
   })
 
   describe('Choice', () => {
@@ -287,7 +287,7 @@ function explore (v) {
       delete obj.States.task
       delete obj.States.fail
 
-      obj.States['choice'] = choice
+      obj.States.choice = choice
       runTest(v, obj, 0)
 
       choice.Next = 'a'
@@ -527,7 +527,7 @@ function explore (v) {
         {
           StartAt: 'p1',
           States: {
-            'p1': {
+            p1: {
               Type: 'Pass',
               End: true
             }
@@ -550,17 +550,17 @@ function explore (v) {
     para.Branches = []
     runTest(v, obj, 0)
 
-    para.Branches = [ 3 ]
+    para.Branches = [3]
     runTest(v, obj, 1)
 
-    para.Branches = [ { } ]
+    para.Branches = [{ }]
     runTest(v, obj, 2)
 
     para.Branches = [
       {
         StartAt: 'p1',
         States: {
-          'p1': {
+          p1: {
             Type: 'foo',
             End: true
           }
@@ -574,7 +574,7 @@ function explore (v) {
         foo: 1,
         StartAt: 'p1',
         States: {
-          'p1': {
+          p1: {
             Type: 'Pass',
             End: true
           }

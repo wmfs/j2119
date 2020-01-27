@@ -55,11 +55,11 @@ describe('J2119 Oxford', () => {
   })
 
   const OXFORD_LISTS = [
-    [ 'an R2', [ 'R2' ] ],
-    [ 'an R2 or an R3', [ 'R2', 'R3' ] ],
-    [ 'an R2, an R3, or an R4', [ 'R2', 'R3', 'R4' ] ]
+    ['an R2', ['R2']],
+    ['an R2 or an R3', ['R2', 'R3']],
+    ['an R2, an R3, or an R4', ['R2', 'R3', 'R4']]
   ]
-  const roles = [ 'R2', 'R3', 'R4' ]
+  const roles = ['R2', 'R3', 'R4']
   describe('should properly break up a role list', () => {
     const matcher = lineMatcher('R1')
     roles.forEach(role => matcher.addRole(role))
@@ -71,9 +71,9 @@ describe('J2119 Oxford', () => {
   })
 
   const STRING_LISTS = [
-    [ '"R2"', [ 'R2' ] ],
-    [ '"R2" or "R3"', [ 'R2', 'R3' ] ],
-    [ '"R2", "R3", or "R4"', [ 'R2', 'R3', 'R4' ] ]
+    ['"R2"', ['R2']],
+    ['"R2" or "R3"', ['R2', 'R3']],
+    ['"R2", "R3", or "R4"', ['R2', 'R3', 'R4']]
   ]
   describe('should properly break up a string list', () => {
     STRING_LISTS.forEach(([list, expected]) => {
