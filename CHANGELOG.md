@@ -1,3 +1,20 @@
+# [1.10.0](https://github.com/wmfs/j2119/compare/v1.9.0...v1.10.0) (2020-01-27)
+
+
+### 🛠 Builds
+
+* **deps:** bump luxon from 1.21.3 to 1.22.0 ([f204a5f](https://github.com/wmfs/j2119/commit/f204a5f0292ce59fc1df91da383b81b0d8f09371))
+* **deps-dev:** bump codecov from 3.6.1 to 3.6.2 ([50d2ed5](https://github.com/wmfs/j2119/commit/50d2ed51f3fb14e5518a26a555c44767c9a2bbca))
+* **deps-dev:** bump conventional-changelog-metahub from 3.0.0 to 4.0.0 ([caef555](https://github.com/wmfs/j2119/commit/caef55521c0faa9c802cedd119d62bd622957484))
+* **deps-dev:** bump mocha from 7.0.0 to 7.0.1 ([ffcc2e4](https://github.com/wmfs/j2119/commit/ffcc2e48ed455fad04cd2f990f514c4ebf33c945))
+* **deps-dev:** update standard requirement from 12.0.1 to 14.3.1 ([49c2c14](https://github.com/wmfs/j2119/commit/49c2c1416a0da64f59e952610f464319eb2ddb4e))
+
+
+### 💎 Styles
+
+* standard --fix ([0986b50](https://github.com/wmfs/j2119/commit/0986b50048a82decedc7894d72581fd4d6752634))
+* Unexpected lexical declaration in case block ([c7b90f1](https://github.com/wmfs/j2119/commit/c7b90f19dd1bffb6a7a172aa5de2b22b64f7a720))
+
 # [1.9.0](https://github.com/wmfs/j2119/compare/v1.8.0...v1.9.0) (2020-01-06)
 
 
