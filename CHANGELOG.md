@@ -1,3 +1,15 @@
+# [1.11.0](https://github.com/wmfs/j2119/compare/v1.10.0...v1.11.0) (2020-02-12)
+
+
+### 🛠 Builds
+
+* **deps:** bump xregexp from 4.2.4 to 4.3.0 ([412b658](https://github.com/wmfs/j2119/commit/412b65868895c722d008650bd8fa4c55f7549fc4))
+* **deps-dev:** bump [@semantic-release](https://github.com/semantic-release)/changelog from 3.0.6 to 5.0.0 ([da5d66f](https://github.com/wmfs/j2119/commit/da5d66f7781f6e55a34da045cc894e4dae36a774))
+* **deps-dev:** bump codecov from 3.6.2 to 3.6.3 ([0cb90dd](https://github.com/wmfs/j2119/commit/0cb90ddd7c74ddae17391157b3455b0872128aae))
+* **deps-dev:** bump codecov from 3.6.3 to 3.6.4 ([b982d3b](https://github.com/wmfs/j2119/commit/b982d3b4df252415c7a84e534b25fac5a69894a1))
+* **deps-dev:** bump codecov from 3.6.4 to 3.6.5 ([028d315](https://github.com/wmfs/j2119/commit/028d315d742f7feb77a94e7bc0a23b243718355a))
+* **deps-dev:** bump cz-conventional-changelog from 3.0.2 to 3.1.0 ([5e342e0](https://github.com/wmfs/j2119/commit/5e342e084171b377def9f8c6668c23a782652b55))
+
 # [1.10.0](https://github.com/wmfs/j2119/compare/v1.9.0...v1.10.0) (2020-01-27)
 
 
