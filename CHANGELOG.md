@@ -1,3 +1,24 @@
+# [1.12.0](https://github.com/wmfs/j2119/compare/v1.11.0...v1.12.0) (2020-04-02)
+
+
+### 🛠 Builds
+
+* **deps:** bump luxon from 1.22.0 to 1.22.2 ([bd0543e](https://github.com/wmfs/j2119/commit/bd0543e2c80c52893537444f8291f31cc7805ea8))
+* **deps-dev:** bump [@semantic-release](https://github.com/semantic-release)/changelog from 5.0.0 to 5.0.1 ([4e900e2](https://github.com/wmfs/j2119/commit/4e900e264a1a782eed9a4675a9ce57cdaf3a1f94))
+* **deps-dev:** bump [@semantic-release](https://github.com/semantic-release)/git from 7.0.18 to 9.0.0 ([23c1818](https://github.com/wmfs/j2119/commit/23c18182e82deb3638dcbe496f4486123186d7f1))
+* **deps-dev:** bump conventional-changelog-metahub from 4.0.0 to 4.0.1 ([943fa49](https://github.com/wmfs/j2119/commit/943fa49f738e27baed7a47f23305498d6931afc1))
+* **deps-dev:** bump mocha from 7.0.1 to 7.1.0 ([4b3d06a](https://github.com/wmfs/j2119/commit/4b3d06abda3cde34430cacae2a90aff100235a2e))
+* **deps-dev:** bump mocha from 7.1.0 to 7.1.1 ([75c69b7](https://github.com/wmfs/j2119/commit/75c69b7cbbce1e13bf2df6378edcd93516cd1224))
+* **deps-dev:** bump semantic-release from 15.14.0 to 17.0.3 ([3d079cc](https://github.com/wmfs/j2119/commit/3d079cc8cb617ddff636b0fa110a3b9ec4366acd))
+* **deps-dev:** bump semantic-release from 17.0.3 to 17.0.4 ([5c48a41](https://github.com/wmfs/j2119/commit/5c48a419f4a6e85a5926a797c293610032db22ba))
+* **deps-dev:** bump standard from 14.3.1 to 14.3.2 ([3bf60da](https://github.com/wmfs/j2119/commit/3bf60da430874fe1243ec1d1687b2935bda50600))
+* **deps-dev:** bump standard from 14.3.2 to 14.3.3 ([f783dc0](https://github.com/wmfs/j2119/commit/f783dc099ed8df5238e33630ed2c356e74564909))
+
+
+### ⚙️ Continuous Integrations
+
+* **circle:** add context env var config to config.yml ([407f70f](https://github.com/wmfs/j2119/commit/407f70f85291e177eb66189b5d63b16c2f2ef47f))
+
 # [1.11.0](https://github.com/wmfs/j2119/compare/v1.10.0...v1.11.0) (2020-02-12)
 
 
