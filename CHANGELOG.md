@@ -1,3 +1,11 @@
+# [1.13.0](https://github.com/wmfs/j2119/compare/v1.12.0...v1.13.0) (2020-04-05)
+
+
+### 🛠 Builds
+
+* **deps:** bump luxon from 1.22.2 to 1.23.0 ([2847685](https://github.com/wmfs/j2119/commit/28476851d1c19119bf50853f59fe30e7b5b955b8))
+* **deps-dev:** bump nyc from 15.0.0 to 15.0.1 ([591224c](https://github.com/wmfs/j2119/commit/591224c07ae1ae7219e401bb1d4259c96db0fda4))
+
 # [1.12.0](https://github.com/wmfs/j2119/compare/v1.11.0...v1.12.0) (2020-04-02)
 
 
