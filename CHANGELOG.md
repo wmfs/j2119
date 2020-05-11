@@ -1,3 +1,15 @@
+# [1.14.0](https://github.com/wmfs/j2119/compare/v1.13.0...v1.14.0) (2020-05-11)
+
+
+### 🛠 Builds
+
+* **deps:** bump luxon from 1.23.0 to 1.24.1 ([018caed](https://github.com/wmfs/j2119/commit/018caeda80497d5c882f88da50be23e0365e332e))
+* **deps-dev:** bump cz-conventional-changelog from 3.1.0 to 3.2.0 ([04069f5](https://github.com/wmfs/j2119/commit/04069f50826743eaaf7fe7217469972d09aea239))
+* **deps-dev:** bump mocha from 7.1.1 to 7.1.2 ([fd76181](https://github.com/wmfs/j2119/commit/fd76181edd78b7dd77a04b4be45cf10960341fdd))
+* **deps-dev:** bump semantic-release from 17.0.4 to 17.0.5 ([0fcea53](https://github.com/wmfs/j2119/commit/0fcea536ca54dd94c305faa03f191220defafc10))
+* **deps-dev:** bump semantic-release from 17.0.5 to 17.0.6 ([ccf5097](https://github.com/wmfs/j2119/commit/ccf50970a261016535ab85aa4df93d13bb3a8eed))
+* **deps-dev:** bump semantic-release from 17.0.6 to 17.0.7 ([544407c](https://github.com/wmfs/j2119/commit/544407c2dcb3d068147ab0f6526cbf79032c1e89))
+
 # [1.13.0](https://github.com/wmfs/j2119/compare/v1.12.0...v1.13.0) (2020-04-05)
 
 
