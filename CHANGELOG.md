@@ -1,3 +1,28 @@
+# [1.15.0](https://github.com/wmfs/j2119/compare/v1.14.0...v1.15.0) (2020-08-24)
+
+
+### 🛠 Builds
+
+* **deps:** bump luxon from 1.24.1 to 1.25.0 ([20bc017](https://github.com/wmfs/j2119/commit/20bc017891723320a2dd46e404f816fd33ab32ba))
+* **deps-dev:** bump codecov from 3.6.5 to 3.7.0 ([e6b1e81](https://github.com/wmfs/j2119/commit/e6b1e8199a3cfec51c6a04f3afaca5b9caeb992a))
+* **deps-dev:** bump codecov from 3.7.0 to 3.7.1 ([249dc01](https://github.com/wmfs/j2119/commit/249dc018d564b22f745f96cd9ed4174603245dc4))
+* **deps-dev:** bump codecov from 3.7.1 to 3.7.2 ([1bc96a2](https://github.com/wmfs/j2119/commit/1bc96a290efff59b35dfc2729c43aae405f472ea))
+* **deps-dev:** bump mocha from 7.1.2 to 7.2.0 ([b6a7e90](https://github.com/wmfs/j2119/commit/b6a7e90d49e3452c6cd1c8d59c7acb1116edbf4d))
+* **deps-dev:** bump mocha from 7.2.0 to 8.0.1 ([6691ce9](https://github.com/wmfs/j2119/commit/6691ce9631fbe1a021e725371628aed91be9deb9))
+* **deps-dev:** bump mocha from 8.0.1 to 8.1.0 ([d1bd289](https://github.com/wmfs/j2119/commit/d1bd28972b33ec01cfec8be09e591cd3bc7ac450))
+* **deps-dev:** bump mocha from 8.1.0 to 8.1.1 ([8df57e5](https://github.com/wmfs/j2119/commit/8df57e5e81969b4c4072e94848802972afb8e686))
+* **deps-dev:** bump nyc from 15.0.1 to 15.1.0 ([24ba704](https://github.com/wmfs/j2119/commit/24ba704230402528786a29680701ba8a55d5aa58))
+* **deps-dev:** bump semantic-release from 17.0.7 to 17.0.8 ([c5e7b21](https://github.com/wmfs/j2119/commit/c5e7b2183f1b1d42bea71a41a4c5650d25e0ac50))
+* **deps-dev:** bump semantic-release from 17.0.8 to 17.1.0 ([47d6b8f](https://github.com/wmfs/j2119/commit/47d6b8f4c030bf300f090908d9cd54213f63a669))
+* **deps-dev:** bump semantic-release from 17.1.0 to 17.1.1 ([ad9a067](https://github.com/wmfs/j2119/commit/ad9a06743257f47c37a94f4e03b5bf9ec0a07edc))
+* **deps-dev:** bump standard from 14.3.3 to 14.3.4 ([a7ef217](https://github.com/wmfs/j2119/commit/a7ef21776385bf28529b40fdc852477f02a21480))
+
+
+### ⚙️ Continuous Integrations
+
+* **circle:** separate lint job [ch1009] ([9e0d412](https://github.com/wmfs/j2119/commit/9e0d412a53294a27b53f21118827c2357578888b))
+* **circle:** use updated circle node image [skip ci] ([c3e2d52](https://github.com/wmfs/j2119/commit/c3e2d52f134b94cc09fbef7affe799dc0ff5029c))
+
 # [1.14.0](https://github.com/wmfs/j2119/compare/v1.13.0...v1.14.0) (2020-05-11)
 
 
