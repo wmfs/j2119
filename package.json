@@ -20,7 +20,7 @@
   "dependencies": {
     "luxon": "1.25.0",
     "n-readlines": "1.0.0",
-    "xregexp": "4.3.0"
+    "xregexp": "4.4.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "5.0.1",
