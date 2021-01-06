@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/wmfs/j2119/compare/v1.16.0...v1.17.0) (2021-01-06)
+
+
+### 🛠 Builds
+
+* **deps:** bump xregexp from 4.3.0 to 4.4.1 ([b0d251a](https://github.com/wmfs/j2119/commit/b0d251a8eeb8e55f7e121b3bbe751d68a9eb6aa1))
+
 # [1.16.0](https://github.com/wmfs/j2119/compare/v1.15.0...v1.16.0) (2021-01-06)
 
 
