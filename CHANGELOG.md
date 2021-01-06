@@ -1,3 +1,41 @@
+# [1.16.0](https://github.com/wmfs/j2119/compare/v1.15.0...v1.16.0) (2021-01-06)
+
+
+### 🛠 Builds
+
+* **deps:** bump n-readlines from 1.0.0 to 1.0.1 ([201cf50](https://github.com/wmfs/j2119/commit/201cf50a613f1d4bb80a5ae32365bb51be68442c))
+* **deps-dev:** bump codecov from 3.7.2 to 3.8.0 ([0b0f152](https://github.com/wmfs/j2119/commit/0b0f152762d4c7741fd6ab1762c30bb91c0a0621))
+* **deps-dev:** bump codecov from 3.8.0 to 3.8.1 ([992c8a7](https://github.com/wmfs/j2119/commit/992c8a7544413d6b489b1cdf353fbe2afd97aa57))
+* **deps-dev:** bump cz-conventional-changelog from 3.2.0 to 3.2.1 ([4b2c12d](https://github.com/wmfs/j2119/commit/4b2c12d14e7276c27bb9b15db9346e34c9cc8499))
+* **deps-dev:** bump cz-conventional-changelog from 3.2.1 to 3.3.0 ([e0d161f](https://github.com/wmfs/j2119/commit/e0d161fde1099ce744d2a0e23a6706ab679c97e9))
+* **deps-dev:** bump mocha from 8.1.1 to 8.1.2 ([1f51644](https://github.com/wmfs/j2119/commit/1f51644b6ef6f3d0757f1b325b2ba9addea450b7))
+* **deps-dev:** bump mocha from 8.1.2 to 8.1.3 ([20770ca](https://github.com/wmfs/j2119/commit/20770cac1012b8c825d6de018e9f153f18d12ce0))
+* **deps-dev:** bump mocha from 8.1.3 to 8.2.0 ([6848af0](https://github.com/wmfs/j2119/commit/6848af023ceaf01161ddad90080d7b37cd6ebc3c))
+* **deps-dev:** bump mocha from 8.2.0 to 8.2.1 ([48ab475](https://github.com/wmfs/j2119/commit/48ab475a728f94a7aaf2cd62ec1712ef27653ba0))
+* **deps-dev:** bump semantic-release from 17.1.1 to 17.1.2 ([5d8fcc2](https://github.com/wmfs/j2119/commit/5d8fcc2711c61e20d41b8be05558a64f8a83d233))
+* **deps-dev:** bump semantic-release from 17.1.2 to 17.2.0 ([8be3422](https://github.com/wmfs/j2119/commit/8be3422cb1a88e9f8ea4cf149fcfb551ab1edd19))
+* **deps-dev:** bump semantic-release from 17.2.0 to 17.2.1 ([33ef96a](https://github.com/wmfs/j2119/commit/33ef96af25cedfaecb1cfefcd46799db85239e62))
+* **deps-dev:** bump semantic-release from 17.2.1 to 17.2.2 ([42c424c](https://github.com/wmfs/j2119/commit/42c424c537e85ed444cf355311711db9a8210c20))
+* **deps-dev:** bump semantic-release from 17.2.2 to 17.2.3 ([f455378](https://github.com/wmfs/j2119/commit/f455378646c80ec10b0aa81ed2451fc75d038755))
+* **deps-dev:** bump semantic-release from 17.2.3 to 17.2.4 ([9965a6b](https://github.com/wmfs/j2119/commit/9965a6b0b2eaa787fb3b6c77c072eccc52b72fa4))
+* **deps-dev:** bump semantic-release from 17.2.4 to 17.3.0 ([5e09c95](https://github.com/wmfs/j2119/commit/5e09c954cbfb4a7ff045e5b7d333cc432edccea7))
+* **deps-dev:** bump semantic-release from 17.3.0 to 17.3.1 ([4c95b37](https://github.com/wmfs/j2119/commit/4c95b37a5e8f82a549d28b91b38cbebb38b4f225))
+* **deps-dev:** bump standard from 14.3.4 to 15.0.0 ([577a440](https://github.com/wmfs/j2119/commit/577a440b2a43731993b97b5a595e8bd6e18f8a81))
+* **deps-dev:** bump standard from 15.0.0 to 15.0.1 ([bbde662](https://github.com/wmfs/j2119/commit/bbde662754fbdf314fe53e9b474fcfbaadd8d248))
+* **deps-dev:** bump standard from 15.0.1 to 16.0.0 ([6e4dc00](https://github.com/wmfs/j2119/commit/6e4dc00efb0f195a6029239cad47762c4b2a1857))
+* **deps-dev:** bump standard from 16.0.0 to 16.0.1 ([5bb0d5f](https://github.com/wmfs/j2119/commit/5bb0d5f59f286ad27d5b22b2a9eec3cd6376957a))
+* **deps-dev:** bump standard from 16.0.1 to 16.0.2 ([6e04b56](https://github.com/wmfs/j2119/commit/6e04b569539972ff956944e5c56f9d4ac90a8061))
+* **deps-dev:** bump standard from 16.0.2 to 16.0.3 ([06ad3ff](https://github.com/wmfs/j2119/commit/06ad3ff72b9f202b7df212096b0c151a486cd9f2))
+
+
+### ⚙️ Continuous Integrations
+
+* **circle:** add parallelism for unit tests [ch2766] ([b00e000](https://github.com/wmfs/j2119/commit/b00e000c83a927f2595fd163a93a51a365ef7b99))
+* **circle:** authenticate Docker image pull [ch2767] ([f74fe28](https://github.com/wmfs/j2119/commit/f74fe2893a843fa07ed572846b496f55fb250047))
+* **circle:** cache dependencies [ch2770] ([8c03857](https://github.com/wmfs/j2119/commit/8c038576d84f0a8740a2613b36aff5eb31b4c75d))
+* **circle:** separate linting job [ch1009] ([7e3c96a](https://github.com/wmfs/j2119/commit/7e3c96a29a78a25c3517b40aa9acbc05bf07d757))
+* **circle:** update build environment variable context name [ch2771] ([6b811e2](https://github.com/wmfs/j2119/commit/6b811e266846a1a6910640eea0ab14a26a5e8bd0))
+
 # [1.15.0](https://github.com/wmfs/j2119/compare/v1.14.0...v1.15.0) (2020-08-24)
 
 
