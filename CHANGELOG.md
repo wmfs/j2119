@@ -1,3 +1,20 @@
+# [1.18.0](https://github.com/wmfs/j2119/compare/v1.17.0...v1.18.0) (2021-02-17)
+
+
+### 🛠 Builds
+
+* **deps:** bump luxon from 1.25.0 to 1.26.0 ([761e037](https://github.com/wmfs/j2119/commit/761e03713d3616471acb479c1cdcb67bd449a9aa))
+* **deps-dev:** bump chai from 4.2.0 to 4.3.0 ([9dabed9](https://github.com/wmfs/j2119/commit/9dabed9bd8d009dba60bca5b79c6cc616b871145))
+* **deps-dev:** bump mocha from 8.2.1 to 8.3.0 ([f7faaef](https://github.com/wmfs/j2119/commit/f7faaef2f349672e74478cab0864a086d22bf2d8))
+* **deps-dev:** bump semantic-release from 17.3.1 to 17.3.2 ([9285e12](https://github.com/wmfs/j2119/commit/9285e123661565087f4c012bbaa8dfabb0ccac86))
+* **deps-dev:** bump semantic-release from 17.3.2 to 17.3.3 ([635868e](https://github.com/wmfs/j2119/commit/635868ee77d5ba8a370f0c64461e57c4c1914bd4))
+* **deps-dev:** bump semantic-release from 17.3.3 to 17.3.4 ([ac87327](https://github.com/wmfs/j2119/commit/ac87327a5dec9ab18aaef4f6ab3e5f8ae5d667dc))
+* **deps-dev:** bump semantic-release from 17.3.4 to 17.3.5 ([4927c18](https://github.com/wmfs/j2119/commit/4927c1893c9a055a56a29f9af59bee0626655a14))
+* **deps-dev:** bump semantic-release from 17.3.5 to 17.3.6 ([833f564](https://github.com/wmfs/j2119/commit/833f564acbf1a67bf8173c8a8aa52ddeeb231a36))
+* **deps-dev:** bump semantic-release from 17.3.6 to 17.3.7 ([73a3dd0](https://github.com/wmfs/j2119/commit/73a3dd0908f578c11c1c5410d3ba690914a9a9d6))
+* **deps-dev:** bump semantic-release from 17.3.7 to 17.3.8 ([38ac6c7](https://github.com/wmfs/j2119/commit/38ac6c7fdf10cf09178732db83e966cafddbcd6b))
+* **deps-dev:** bump semantic-release from 17.3.8 to 17.3.9 ([eb99be3](https://github.com/wmfs/j2119/commit/eb99be3ceab00f56f55fa9eefa6af2adce824f4f))
+
 # [1.17.0](https://github.com/wmfs/j2119/compare/v1.16.0...v1.17.0) (2021-01-06)
 
 
