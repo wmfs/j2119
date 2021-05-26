@@ -1,3 +1,22 @@
+# [1.19.0](https://github.com/wmfs/j2119/compare/v1.18.0...v1.19.0) (2021-05-26)
+
+
+### 🛠 Builds
+
+* **deps:** bump luxon from 1.26.0 to 1.27.0 ([d882736](https://github.com/wmfs/j2119/commit/d88273676f6b881c43ae8c472e35c08455d5b8d4))
+* **deps-dev:** bump chai from 4.3.0 to 4.3.1 ([1cd9641](https://github.com/wmfs/j2119/commit/1cd96418971c13585adcd80df6dbdaf603cb35f0))
+* **deps-dev:** bump chai from 4.3.1 to 4.3.2 ([4d63694](https://github.com/wmfs/j2119/commit/4d636949e14f97413fcce215b9807412784a126a))
+* **deps-dev:** bump chai from 4.3.2 to 4.3.3 ([11a35b2](https://github.com/wmfs/j2119/commit/11a35b282139b8e067094491253b11198edbd2e8))
+* **deps-dev:** bump chai from 4.3.3 to 4.3.4 ([6d987ce](https://github.com/wmfs/j2119/commit/6d987cebcfda833252082ce55757a2589e18ec1b))
+* **deps-dev:** bump codecov from 3.8.1 to 3.8.2 ([f58bd37](https://github.com/wmfs/j2119/commit/f58bd37c0ce5c319dcacf4b37fd0e9bcb8e96943))
+* **deps-dev:** bump mocha from 8.3.0 to 8.3.1 ([e3841d9](https://github.com/wmfs/j2119/commit/e3841d907c3584104974abe958fd782d5cf1a648))
+* **deps-dev:** bump mocha from 8.3.1 to 8.3.2 ([5675e6b](https://github.com/wmfs/j2119/commit/5675e6b95280b223cd812c3584c96f275431b272))
+* **deps-dev:** bump mocha from 8.3.2 to 8.4.0 ([368e65f](https://github.com/wmfs/j2119/commit/368e65fd602f1b3e41f45befd88fbf4071aff129))
+* **deps-dev:** bump semantic-release from 17.3.9 to 17.4.0 ([bf90693](https://github.com/wmfs/j2119/commit/bf906933226a8e66e3b7e3320bcf34f19cc165ef))
+* **deps-dev:** bump semantic-release from 17.4.0 to 17.4.1 ([06b812d](https://github.com/wmfs/j2119/commit/06b812df0799988d6652f9251a98f5d4dfc6059a))
+* **deps-dev:** bump semantic-release from 17.4.1 to 17.4.2 ([c7cc8e6](https://github.com/wmfs/j2119/commit/c7cc8e64c4d42af7221c8add9935ad348b0b5738))
+* **deps-dev:** bump semantic-release from 17.4.2 to 17.4.3 ([f98a5f5](https://github.com/wmfs/j2119/commit/f98a5f5260220736a0b097ae4f201c720d075531))
+
 # [1.18.0](https://github.com/wmfs/j2119/compare/v1.17.0...v1.18.0) (2021-02-17)
 
 
