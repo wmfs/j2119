@@ -32,7 +32,7 @@ describe('J2119 LineMatcher', () => {
     const cut = lineMatcher('x')
     expect(cut.isOnlyOneMatchLine(line)).to.be.ok()
 
-    const m = XRegExp.exec(line, cut.onlyOneMatch)
+    const { groups: m } = XRegExp.exec(line, cut.onlyOneMatch)
     expect(m).to.be.ok()
     expect(m.role).to.eql('x')
     const s = m.field_list
@@ -100,7 +100,7 @@ describe('J2119 LineMatcher', () => {
     })
 
     it(VALUE_BASED_ROLE_DEFS[0], () => {
-      const m = XRegExp.exec(VALUE_BASED_ROLE_DEFS[0], cut.roledefMatch)
+      const { groups: m } = XRegExp.exec(VALUE_BASED_ROLE_DEFS[0], cut.roledefMatch)
       expect(m.role).to.eql('State')
       expect(m.fieldtomatch).to.eql('End')
       expect(m.valtomatch).to.eql('true')
@@ -109,7 +109,7 @@ describe('J2119 LineMatcher', () => {
     })
 
     it(VALUE_BASED_ROLE_DEFS[1], () => {
-      const m = XRegExp.exec(VALUE_BASED_ROLE_DEFS[1], cut.roledefMatch)
+      const { groups: m } = XRegExp.exec(VALUE_BASED_ROLE_DEFS[1], cut.roledefMatch)
       expect(m.role).to.eql('State')
       expect(m.fieldtomatch).to.eql('Comment')
       expect(m.valtomatch).to.eql('"Hi"')
@@ -118,7 +118,7 @@ describe('J2119 LineMatcher', () => {
     })
 
     it(VALUE_BASED_ROLE_DEFS[2], () => {
-      const m = XRegExp.exec(VALUE_BASED_ROLE_DEFS[2], cut.roledefMatch)
+      const { groups: m } = XRegExp.exec(VALUE_BASED_ROLE_DEFS[2], cut.roledefMatch)
       expect(m.role).to.eql('State')
       expect(m.newrole).to.eql('Bar')
       expect(m.with_a_field).to.be.ok()
@@ -203,7 +203,7 @@ describe('J2119 LineMatcher', () => {
     COND_LINES.forEach(line =>
       it(line, () => {
         expect(cut.constraintMatch.test(line)).to.be.ok()
-        const m = XRegExp.exec(line, cut.constraintMatch)
+        const { groups: m } = XRegExp.exec(line, cut.constraintMatch)
         expect(m.excluded).to.eql(excludes.shift())
       })
     )
