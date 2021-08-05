@@ -1,3 +1,27 @@
+# [1.20.0](https://github.com/wmfs/j2119/compare/v1.19.0...v1.20.0) (2021-08-05)
+
+
+### 🐛 Bug Fixes
+
+* named backreference properties now appear on the results "groups" ([2f77e4a](https://github.com/wmfs/j2119/commit/2f77e4abef90a8aa431a782a40104e5ea3af0d09))
+* named backreference properties now appear on the results "groups" ([afe13f2](https://github.com/wmfs/j2119/commit/afe13f2a4f5182bfdda1b669bba1d434fcf6cdbc))
+
+
+### 🛠 Builds
+
+* **deps:** update dependency xregexp to v5 ([905414e](https://github.com/wmfs/j2119/commit/905414ef32bf72e4eaec36ac9db1782b9fa4efb6))
+* **deps-dev:** bump codecov from 3.8.2 to 3.8.3 ([9ae41b9](https://github.com/wmfs/j2119/commit/9ae41b999256dcf8aefce080470c74d643c2a236))
+* **deps-dev:** bump mocha from 8.4.0 to 9.0.0 ([17d24df](https://github.com/wmfs/j2119/commit/17d24df6d52d6aee5690181eeed1cc3af7d9b94b))
+* **deps-dev:** bump mocha from 9.0.0 to 9.0.1 ([e914963](https://github.com/wmfs/j2119/commit/e914963a41753d025e8c0594e7c7d95fd716bdca))
+* **deps-dev:** bump mocha from 9.0.1 to 9.0.2 ([cc7989f](https://github.com/wmfs/j2119/commit/cc7989f0e91ffcf63a2580d2c172c974005f3699))
+* **deps-dev:** bump mocha from 9.0.2 to 9.0.3 ([cd975ed](https://github.com/wmfs/j2119/commit/cd975ed92390b9f3549d9797632271c41a266190))
+* **deps-dev:** bump semantic-release from 17.4.3 to 17.4.4 ([3e30c61](https://github.com/wmfs/j2119/commit/3e30c61789a494a084b61e9aefea91bc6160ec7b))
+
+
+### ♻️ Chores
+
+* add renovate config [ch6600] ([e557e93](https://github.com/wmfs/j2119/commit/e557e93c12318fa0a6cc3d64169cf8b413f68076))
+
 # [1.19.0](https://github.com/wmfs/j2119/compare/v1.18.0...v1.19.0) (2021-05-26)
 
 
