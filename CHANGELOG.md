@@ -1,3 +1,10 @@
+# [1.23.0](https://github.com/wmfs/j2119/compare/v1.22.0...v1.23.0) (2022-11-02)
+
+
+### 🛠 Builds
+
+* **deps:** update dependency luxon to v3 ([43979c1](https://github.com/wmfs/j2119/commit/43979c14d614ef57d45a26c8a9aa98f9f35dc0e4))
+
 # [1.22.0](https://github.com/wmfs/j2119/compare/v1.21.0...v1.22.0) (2022-11-02)
 
 
