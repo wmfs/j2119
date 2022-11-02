@@ -1,3 +1,19 @@
+# [1.22.0](https://github.com/wmfs/j2119/compare/v1.21.0...v1.22.0) (2022-11-02)
+
+
+### 🛠 Builds
+
+* **deps-dev:** update dependency chai to v4.3.5 ([bdb1a17](https://github.com/wmfs/j2119/commit/bdb1a17658b5d48f41a05ca6608efd5e7415830b))
+* **deps-dev:** update dependency chai to v4.3.6 ([3274c9b](https://github.com/wmfs/j2119/commit/3274c9bb23516fc873e7aa56f1882f168740c841))
+* **deps-dev:** update dependency mocha to v10 ([f4acece](https://github.com/wmfs/j2119/commit/f4acece4f950567a07fb3403b5e565bcd2a29883))
+* **deps-dev:** update dependency mocha to v10.1.0 ([2ba524d](https://github.com/wmfs/j2119/commit/2ba524d84e8886bd00786a90d97e76f13e629b32))
+* **deps-dev:** update dependency mocha to v9.2.1 ([90ee18f](https://github.com/wmfs/j2119/commit/90ee18f99f65078ed510ccd6175661f1d79fca64))
+* **deps-dev:** update dependency mocha to v9.2.2 ([740b958](https://github.com/wmfs/j2119/commit/740b958473361e4f26ea274760579080a480c8b1))
+* **deps-dev:** update dependency semantic-release to v19.0.3 ([b78dac7](https://github.com/wmfs/j2119/commit/b78dac77f451a331639b594cfc11f1518f35078f))
+* **deps-dev:** update dependency semantic-release to v19.0.5 ([6166051](https://github.com/wmfs/j2119/commit/6166051d0aeb7b80f965576a1b456a0118d28bbb))
+* **deps-dev:** update dependency standard to v17 ([c90df2e](https://github.com/wmfs/j2119/commit/c90df2e8bef9736a6e1869929d57703ac4a123d0))
+* **deps:** update dependency xregexp to v5.1.1 ([2f1751e](https://github.com/wmfs/j2119/commit/2f1751e0020c6d2b17900d2818a4b8349a18da5f))
+
 # [1.21.0](https://github.com/wmfs/j2119/compare/v1.20.0...v1.21.0) (2022-01-25)
 
 
