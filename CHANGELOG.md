@@ -1,3 +1,19 @@
+# [1.24.0](https://github.com/wmfs/j2119/compare/v1.23.0...v1.24.0) (2023-02-17)
+
+
+### 🛠 Builds
+
+* **deps-dev:** update dependency [@semantic-release](https://github.com/semantic-release)/changelog to v6.0.2 ([08bdb53](https://github.com/wmfs/j2119/commit/08bdb53d94e09930dba91a9a28e57b4d36add2f7))
+* **deps-dev:** update dependency chai to v4.3.7 ([e698034](https://github.com/wmfs/j2119/commit/e698034f72bae3658f349039352f4602eb7f95a6))
+* **deps-dev:** update dependency mocha to v10.2.0 ([4433da7](https://github.com/wmfs/j2119/commit/4433da7b337200f1be764a4f6ce8744bdc504195))
+* **deps-dev:** update dependency semantic-release to v20 ([9e1f2be](https://github.com/wmfs/j2119/commit/9e1f2be1dcb9f38df153ed80c9aed6cf406da11e))
+* **deps-dev:** update dependency semantic-release to v20.0.1 ([2b5a305](https://github.com/wmfs/j2119/commit/2b5a305dbf006c44f3d0dbfdaa06d64046ad674b))
+* **deps-dev:** update dependency semantic-release to v20.0.2 ([cc9d192](https://github.com/wmfs/j2119/commit/cc9d1926cb76afed9352d29a9298e700d4c05a68))
+* **deps-dev:** update dependency semantic-release to v20.0.3 ([4100347](https://github.com/wmfs/j2119/commit/41003475b573d188b727fb0ce0240a6e48685ab5))
+* **deps-dev:** update dependency semantic-release to v20.0.4 ([d2b887d](https://github.com/wmfs/j2119/commit/d2b887d1a0483d5a328f3bd846bcb75408ec0099))
+* **deps-dev:** update dependency semantic-release to v20.1.0 ([dcfb47d](https://github.com/wmfs/j2119/commit/dcfb47d20acba3d2f5ef9d3d34e1ea8a107c61be))
+* **deps:** update dependency luxon to v3.2.1 [security] ([2a3c76d](https://github.com/wmfs/j2119/commit/2a3c76d8e08906f505ff443f824d66f99786686d))
+
 # [1.23.0](https://github.com/wmfs/j2119/compare/v1.22.0...v1.23.0) (2022-11-02)
 
 
