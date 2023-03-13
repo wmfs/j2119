@@ -1,3 +1,11 @@
+# [1.25.0](https://github.com/wmfs/j2119/compare/v1.24.0...v1.25.0) (2023-03-13)
+
+
+### 🛠 Builds
+
+* **deps-dev:** update dependency semantic-release to v20.1.1 ([46d35f6](https://github.com/wmfs/j2119/commit/46d35f64aea8781a784e314260dd08373d11395e))
+* **deps:** update dependency luxon to v3.3.0 ([36baf4d](https://github.com/wmfs/j2119/commit/36baf4dda4195cc4f93f6c6498e89873de0a2dd7))
+
 # [1.24.0](https://github.com/wmfs/j2119/compare/v1.23.0...v1.24.0) (2023-02-17)
 
 
