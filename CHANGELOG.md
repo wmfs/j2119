@@ -1,3 +1,10 @@
+## [1.25.1](https://github.com/wmfs/j2119/compare/v1.25.0...v1.25.1) (2024-09-16)
+
+
+### Bug Fixes
+
+* Check for grandchild roles before recursing into grandchildren. ([#331](https://github.com/wmfs/j2119/issues/331)) ([8611ec3](https://github.com/wmfs/j2119/commit/8611ec381ecce15caec219d9413956871766bf9b))
+
 # [1.25.0](https://github.com/wmfs/j2119/compare/v1.24.0...v1.25.0) (2023-03-13)
 
 
