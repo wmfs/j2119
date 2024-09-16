@@ -108,5 +108,5 @@ speed.
 Bug reports and pull requests are welcome on GitHub. Please be aware of our [Code of Conduct](https://github.com/wmfs/j2112/blob/master/CODE_OF_CONDUCT.md)
 
 ## <a name="license"></a>License
-Licensed under the terms of the [MIT license](https://github.com/wmfs/j2112/blob/master/LICENSE). Copyright (c) 2018 West Midlands Fire Service
+Licensed under the terms of the [MIT license](https://github.com/wmfs/j2112/blob/master/LICENSE). Copyright (c) 2018, 2024 West Midlands Fire Service
 
