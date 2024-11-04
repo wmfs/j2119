@@ -1,3 +1,5 @@
+# [1.26.0](https://github.com/wmfs/j2119/compare/v1.25.1...v1.26.0) (2024-11-04)
+
 ## [1.25.1](https://github.com/wmfs/j2119/compare/v1.25.0...v1.25.1) (2024-09-16)
 
 
