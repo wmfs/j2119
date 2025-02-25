@@ -1,3 +1,15 @@
+## [1.27.0](https://github.com/wmfs/j2119/compare/v1.26.0...v1.27.0) (2025-02-25)
+
+### Build system dependencies :hammer:
+
+* **deps-dev:** [sc-29160] Resolve issue with semantic-release changelog notes ([#340](https://github.com/wmfs/j2119/issues/340)) ([0e62e1b](https://github.com/wmfs/j2119/commit/0e62e1b507a2190a8e5251b8284413f78e843b08))
+* **deps-dev:** update dependency mocha to v11 ([#338](https://github.com/wmfs/j2119/issues/338)) ([9910b90](https://github.com/wmfs/j2119/commit/9910b905387d9b7a7b274f44a0c6c096f21081d2))
+* **deps-dev:** update dependency mocha to v11.1.0 ([#341](https://github.com/wmfs/j2119/issues/341)) ([ecf3ebe](https://github.com/wmfs/j2119/commit/ecf3ebed555843c90c47649c58c921f2f12fb038))
+* **deps-dev:** update dependency semantic-release to v24.2.1 ([#339](https://github.com/wmfs/j2119/issues/339)) ([c6fe812](https://github.com/wmfs/j2119/commit/c6fe8122cbfb83b2ecd53f191ec6455ef6765b72))
+* **deps-dev:** update dependency semantic-release to v24.2.2 ([#342](https://github.com/wmfs/j2119/issues/342)) ([e4919c2](https://github.com/wmfs/j2119/commit/e4919c2dc732dc3645b0cf0ab470ca1e457058fe))
+* **deps-dev:** update dependency semantic-release to v24.2.3 ([#343](https://github.com/wmfs/j2119/issues/343)) ([0304edf](https://github.com/wmfs/j2119/commit/0304edf26777bcaf50031097256ec7b079d3e697))
+* **deps:** update dependency xregexp to v5.1.2 ([#344](https://github.com/wmfs/j2119/issues/344)) ([c3a83bd](https://github.com/wmfs/j2119/commit/c3a83bd734a5c57015d537158677061f20a4cf2a))
+
 # [1.26.0](https://github.com/wmfs/j2119/compare/v1.25.1...v1.26.0) (2024-11-04)
 
 ## [1.25.1](https://github.com/wmfs/j2119/compare/v1.25.0...v1.25.1) (2024-09-16)
