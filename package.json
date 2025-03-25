@@ -18,7 +18,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
-    "luxon": "3.5.0",
+    "luxon": "3.6.0",
     "n-readlines": "1.0.1",
     "xregexp": "5.1.2"
   },
