@@ -1,3 +1,9 @@
+## [1.28.0](https://github.com/wmfs/j2119/compare/v1.27.0...v1.28.0) (2025-03-31)
+
+### Build system dependencies :hammer:
+
+* **deps:** update dependency luxon to v3.6.0 ([#345](https://github.com/wmfs/j2119/issues/345)) ([1afc596](https://github.com/wmfs/j2119/commit/1afc596e299d7a0c360206d2fb91520c8c2185a3))
+
 ## [1.27.0](https://github.com/wmfs/j2119/compare/v1.26.0...v1.27.0) (2025-02-25)
 
 ### Build system dependencies :hammer:
