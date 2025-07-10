@@ -1,3 +1,20 @@
+## [1.30.0](https://github.com/wmfs/j2119/compare/v1.29.0...v1.30.0) (2025-07-10)
+
+### Build system dependencies :hammer:
+
+* **deps-dev:** update dependency conventional-changelog-conventionalcommits to v9 ([#351](https://github.com/wmfs/j2119/issues/351)) ([0d89bba](https://github.com/wmfs/j2119/commit/0d89bbadf38cbd16c29a0e7314868debd98c27d1))
+* **deps-dev:** update dependency mocha to v11.2.2 ([#347](https://github.com/wmfs/j2119/issues/347)) ([5fa7b33](https://github.com/wmfs/j2119/commit/5fa7b33d8c8571367ade8d0c256ead2a5d968049))
+* **deps-dev:** update dependency mocha to v11.3.0 ([#348](https://github.com/wmfs/j2119/issues/348)) ([a83d239](https://github.com/wmfs/j2119/commit/a83d239b13f12811acd10a9791fd2d5f437a9550))
+* **deps-dev:** update dependency mocha to v11.4.0 ([#350](https://github.com/wmfs/j2119/issues/350)) ([3d108fb](https://github.com/wmfs/j2119/commit/3d108fb59d486c10b1f4af4638a54599bcb6d626))
+* **deps-dev:** update dependency mocha to v11.5.0 ([#353](https://github.com/wmfs/j2119/issues/353)) ([259879c](https://github.com/wmfs/j2119/commit/259879c984c0f84af51216a693dd80217ab691d4))
+* **deps-dev:** update dependency mocha to v11.6.0 ([#354](https://github.com/wmfs/j2119/issues/354)) ([cfb85bc](https://github.com/wmfs/j2119/commit/cfb85bc50311c9c9e8a7d4b7aca917da02a57492))
+* **deps-dev:** update dependency mocha to v11.7.0 ([#355](https://github.com/wmfs/j2119/issues/355)) ([709ac06](https://github.com/wmfs/j2119/commit/709ac064364b0377c90a7fb6d53f281f0f01e2df))
+* **deps-dev:** update dependency mocha to v11.7.1 ([#356](https://github.com/wmfs/j2119/issues/356)) ([9015d98](https://github.com/wmfs/j2119/commit/9015d98fd72522a87b67c72c6e147fa1418bf9f8))
+* **deps-dev:** update dependency semantic-release to v24.2.4 ([#349](https://github.com/wmfs/j2119/issues/349)) ([c632c03](https://github.com/wmfs/j2119/commit/c632c03802807516be6ef602d1080d343249ef5e))
+* **deps-dev:** update dependency semantic-release to v24.2.5 ([#352](https://github.com/wmfs/j2119/issues/352)) ([64df8d4](https://github.com/wmfs/j2119/commit/64df8d452984e89337cd54ea712069ffac0c568f))
+* **deps-dev:** update dependency semantic-release to v24.2.6 ([#357](https://github.com/wmfs/j2119/issues/357)) ([8123194](https://github.com/wmfs/j2119/commit/812319490dc1e1ebb80e79f8d9658e8b3fc3353d))
+* **deps:** update dependency luxon to v3.7.1 ([#358](https://github.com/wmfs/j2119/issues/358)) ([b9a737b](https://github.com/wmfs/j2119/commit/b9a737bdebe7416ee89ea13fc868cca4a9893c1b))
+
 ## [1.29.0](https://github.com/wmfs/j2119/compare/v1.28.0...v1.29.0) (2025-04-01)
 
 ### Build system dependencies :hammer:
