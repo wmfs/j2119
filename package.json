@@ -19,7 +19,7 @@
   "main": "lib/index.js",
   "dependencies": {
     "luxon": "3.7.1",
-    "n-readlines": "1.0.1",
+    "n-readlines": "3.4.1",
     "xregexp": "5.1.2"
   },
   "devDependencies": {
