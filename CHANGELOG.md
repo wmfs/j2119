@@ -1,3 +1,18 @@
+## [1.31.0](https://github.com/wmfs/j2119/compare/v1.30.1...v1.31.0) (2026-11-02)
+
+### Build system dependencies :hammer:
+
+* **deps-dev:** fix conventionalcommit versions [sc-34125] ([f0eebdc](https://github.com/wmfs/j2119/commit/f0eebdc8f6142754fb569b65898de646e1af6720))
+* **deps-dev:** update dependency conventional-changelog-conventionalcommits to v10.4.0 ([#395](https://github.com/wmfs/j2119/issues/395)) ([9de011f](https://github.com/wmfs/j2119/commit/9de011f53d8026210185092d0ca0a24bfeb06eea))
+* **deps-dev:** update dependency conventional-changelog-conventionalcommits to v10.4.1 ([#398](https://github.com/wmfs/j2119/issues/398)) ([b220d0b](https://github.com/wmfs/j2119/commit/b220d0b4e6a1c6f4998d9fac12b84bf39bd3d085))
+* **deps-dev:** update dependency mocha to v12 ([#396](https://github.com/wmfs/j2119/issues/396)) ([bd0e3dc](https://github.com/wmfs/j2119/commit/bd0e3dc1c8df96fad84934977ace3d5a6a2c794c))
+* **deps:** update dependency xregexp to v5.1.3 ([#397](https://github.com/wmfs/j2119/issues/397)) ([06c1384](https://github.com/wmfs/j2119/commit/06c1384644e52feabd7de1fade88ce32eeeecec7))
+
+### CICD Configuration Changes :construction_worker:
+
+* use github-app-token orb for release token [sc-34101] ([#399](https://github.com/wmfs/j2119/issues/399)) ([f522bf4](https://github.com/wmfs/j2119/commit/f522bf4df763d7cd64820d548a4fac98387b4363))
+* use shared renovate preset [sc-34117] ([#400](https://github.com/wmfs/j2119/issues/400)) ([2a55a80](https://github.com/wmfs/j2119/commit/2a55a80144195e9a6f01d5404d4f20fdc67291dc))
+
 ## [1.30.1](https://github.com/wmfs/j2119/compare/v1.30.0...v1.30.1) (2026-08-13)
 
 ## [1.30.0](https://github.com/wmfs/j2119/compare/v1.29.0...v1.30.0) (2025-07-10)
